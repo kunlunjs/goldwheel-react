@@ -39,3 +39,4 @@ node_modules
 !**/*.css
 !**/*.less
 !**/*.scss
+!README.md

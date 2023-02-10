@@ -11,7 +11,9 @@ export default defineConfig({
   plugins: [react(), visualizer({ emitFile: true }) as PluginOption],
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, 'src')
+      '@': path.resolve(__dirname, 'src'),
+      // https://github.com/vitejs/vite/discussions/8799
+      'timers': 'rollup-plugin-node-polyfills/polyfills/timers'
     }
   },
   test: {

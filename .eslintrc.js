@@ -4,5 +4,4 @@
  */
 module.exports = {
   extends: [require.resolve('@kunlunjs/fabric/dist/eslint')]
-  // extends: [require.resolve('../../GitHub/kunlun-fabric/dist/eslint')]
 }
