@@ -1,0 +1,33 @@
+# Stylelint runs on everything by default; we only lint CSS files.
+*
+!*/
+!*.css
+!*.less
+!*.scss
+
+.husky
+.github
+.vscode
+
+.DS_Store
+.docusaurus
+.gitignore
+.history
+.next
+.umi
+.vercel
+.VSCodeCounter
+.yarn
+
+_redirects
+__fixtures__
+__mocks__
+__tests__/
+
+build
+dist
+coverage
+node_modules
+
+# minifier css
+**/*.min.css
