@@ -11,7 +11,7 @@ import {
   XMarkIcon
 } from '@heroicons/react/24/outline'
 import { NavLink, Link } from 'react-router-dom'
-// import logo from '@/assets/logo.svg'
+import logo from '@/assets/logo.svg'
 import { useLogout } from '@/lib/auth'
 import { useAuthorization, ROLES } from '@/lib/authorization'
 
@@ -226,8 +226,7 @@ const Sidebar = () => {
 const Logo = () => {
   return (
     <Link className="flex items-center text-white" to=".">
-      {/* TODO */}
-      {/* <img className="h-8 w-auto" src={logo} alt="Workflow" /> */}
+      <img className="h-8 w-auto" src={logo} alt="Workflow" />
       <span className="text-xl font-semibold text-white">React</span>
     </Link>
   )

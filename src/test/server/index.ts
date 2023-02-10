@@ -9,12 +9,13 @@ export const initMocks = async () => {
       const { worker } = await import('./browser')
       worker.start({
         onUnhandledRequest: ({ headers, method, url }, print) => {
+          // FIXME
           // if (url.pathname.startsWith('/src')) {
           //   return 'bypass'
           // }
-          if (!url.pathname.startsWith('/api')) {
-            throw new Error(`Unhandled request to ${method} ${url}`)
-          }
+          // if (!url.pathname.startsWith('/api')) {
+          //   throw new Error(`Unhandled request to ${method} ${url}`)
+          // }
         }
       })
     }

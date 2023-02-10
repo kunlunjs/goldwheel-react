@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom'
-// import logo from '@/assets/logo.svg'
+import logo from '@/assets/logo.svg'
 import { Button } from '@/components/Elements'
 import { Head } from '@/components/Head'
 import { useUser } from '@/lib/auth'
@@ -24,7 +24,7 @@ export const Landing = () => {
           <h2 className="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
             <span className="block">React</span>
           </h2>
-          {/* <img src={logo} alt="react" /> */}
+          <img src={logo} alt="react" />
           <p>Showcasing Best Practices For Building React Applications</p>
           <div className="mt-8 flex justify-center">
             <div className="inline-flex rounded-md shadow">

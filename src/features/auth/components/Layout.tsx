@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
-// import logo from '@/assets/logo.svg'
+import { Link } from 'react-router-dom'
+import logo from '@/assets/logo.svg'
 import { Head } from '@/components/Head'
 
 type LayoutProps = {
@@ -13,11 +14,11 @@ export const Layout = ({ children, title }: LayoutProps) => {
       <Head title={title} />
       <div className="flex min-h-screen flex-col justify-center bg-gray-50 py-12 sm:px-6 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
-          {/* <div className="flex justify-center">
+          <div className="flex justify-center">
             <Link className="flex items-center text-white" to="/">
               <img className="h-24 w-auto" src={logo} alt="Workflow" />
             </Link>
-          </div> */}
+          </div>
 
           <h2 className="mt-3 text-center text-3xl font-extrabold text-gray-900">
             {title}
