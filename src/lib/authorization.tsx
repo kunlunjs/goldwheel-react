@@ -2,7 +2,6 @@ import type { ReactNode } from 'react'
 import { useCallback } from 'react'
 import type { Comment } from '@/features/comments'
 import type { User } from '@/features/users'
-
 import { useUser } from './auth'
 
 export enum ROLES {

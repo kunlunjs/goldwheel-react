@@ -1,5 +1,4 @@
 import { configureAuth } from 'react-query-auth/src'
-
 import type {
   UserResponse,
   LoginCredentialsDTO,

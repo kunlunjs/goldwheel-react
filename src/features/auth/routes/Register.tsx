@@ -1,5 +1,4 @@
 import { useNavigate } from 'react-router-dom'
-
 import { Layout } from '../components/Layout'
 import { RegisterForm } from '../components/RegisterForm'
 

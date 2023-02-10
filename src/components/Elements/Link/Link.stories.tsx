@@ -1,5 +1,4 @@
 import type { Meta, Story } from '@storybook/react'
-
 import { Link } from './Link'
 
 const meta: Meta = {

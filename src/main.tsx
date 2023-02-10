@@ -1,7 +1,6 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App'
-import { initMocks } from './test/server'
 import './index.css'
 
 function render() {
@@ -15,8 +14,14 @@ function render() {
 /**
  * @see https://cn.vitejs.dev/guide/env-and-mode.html
  */
-import.meta.env.DEV
-  ? initMocks().then(() => {
+// TODO: support top level `await`
+;(async () => {
+  if (import.meta.env.DEV) {
+    const { initMocks } = await import('./test/server')
+    initMocks().then(() => {
       render()
     })
-  : render()
+  } else {
+    render()
+  }
+})()

@@ -1,4 +1,5 @@
-import { ReactNode, Suspense } from 'react'
+import type { ReactNode } from 'react'
+import { Suspense } from 'react'
 import { QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { ErrorBoundary } from 'react-error-boundary'
@@ -42,7 +43,7 @@ export const AppProvider = ({ children }: AppProviderProps) => {
       <ErrorBoundary FallbackComponent={ErrorFallback}>
         <HelmetProvider>
           <QueryClientProvider client={queryClient}>
-            {import.meta.env.NODE_ENV !== 'test' && <ReactQueryDevtools />}
+            {import.meta.env.MODE === 'development' && <ReactQueryDevtools />}
             <Notifications />
             <AuthLoader
               renderLoading={() => (

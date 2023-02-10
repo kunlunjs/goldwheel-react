@@ -1,5 +1,4 @@
 import { useMutation } from '@tanstack/react-query'
-
 import { axios } from '@/lib/axios'
 import type { MutationConfig } from '@/lib/react-query'
 import { queryClient } from '@/lib/react-query'
