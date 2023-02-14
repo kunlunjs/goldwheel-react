@@ -36,7 +36,7 @@ const models = {
 
 export const db = factory(models)
 
-export type Model = keyof typeof db
+export type Model = keyof typeof models // keyof typeof db
 
 export const loadDb = () =>
   Object.assign(JSON.parse(window.localStorage.getItem('msw-db') || '{}'))
@@ -44,7 +44,6 @@ export const loadDb = () =>
 export const persistDb = (model: Model) => {
   if (import.meta.env.NODE_ENV === 'test') return
   const data = loadDb()
-  // @ts-ignore
   data[model] = db[model].getAll()
   window.localStorage.setItem('msw-db', JSON.stringify(data))
 }
