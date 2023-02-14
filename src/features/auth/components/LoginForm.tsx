@@ -24,11 +24,11 @@ export const LoginForm = ({ onSuccess }: LoginFormProps) => {
   return (
     <div>
       <Form<LoginValues>
+        schema={schema}
         onSubmit={async values => {
           await login.mutateAsync(values)
           onSuccess()
         }}
-        schema={schema}
       >
         {({ register, formState }) => (
           <>

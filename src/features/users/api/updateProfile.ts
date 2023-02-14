@@ -1,6 +1,7 @@
 import { useMutation } from '@tanstack/react-query'
 import { useUser } from '@/lib/auth'
 import { axios } from '@/lib/axios'
+import type { MutationConfig } from '@/lib/react-query'
 import { useNotificationStore } from '@/stores/notifications'
 
 export type UpdateProfileDTO = {
@@ -17,7 +18,7 @@ export const updateProfile = ({ data }: UpdateProfileDTO) => {
 }
 
 type UseUpdateProfileOptions = {
-  config?: Partial<Parameters<typeof useMutation>[0]> // MutationConfig<typeof updateProfile>
+  config?: MutationConfig<typeof updateProfile>
 }
 
 export const useUpdateProfile = ({ config }: UseUpdateProfileOptions = {}) => {

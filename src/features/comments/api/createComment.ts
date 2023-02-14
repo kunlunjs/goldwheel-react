@@ -1,5 +1,6 @@
 import { useMutation } from '@tanstack/react-query'
 import { axios } from '@/lib/axios'
+import type { MutationConfig } from '@/lib/react-query'
 import { queryClient } from '@/lib/react-query'
 import { useNotificationStore } from '@/stores/notifications'
 import type { Comment } from '../types'
@@ -17,7 +18,7 @@ export const createComment = ({ data }: CreateCommentDTO): Promise<Comment> => {
 
 type UseCreateCommentOptions = {
   discussionId: string
-  config?: Partial<Parameters<typeof useMutation>[0]> // MutationConfig<typeof createComment>
+  config?: MutationConfig<typeof createComment>
 }
 
 export const useCreateComment = ({

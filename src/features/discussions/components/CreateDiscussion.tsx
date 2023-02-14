@@ -37,10 +37,10 @@ export const CreateDiscussion = () => {
       >
         <Form<CreateDiscussionDTO['data'], typeof schema>
           id="create-discussion"
+          schema={schema}
           onSubmit={async values => {
             createDiscussionMutation.mutate({ data: values })
           }}
-          schema={schema}
         >
           {({ register, formState }) => (
             <>

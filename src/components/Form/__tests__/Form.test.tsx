@@ -17,9 +17,9 @@ test('should render and submit a basic Form component', async () => {
 
   rtlRender(
     <Form<typeof testData, typeof schema>
-      onSubmit={handleSubmit}
-      schema={schema}
       id="my-form"
+      schema={schema}
+      onSubmit={handleSubmit}
     >
       {({ register, formState }) => (
         <>
@@ -51,9 +51,9 @@ test('should fail submission if validation fails', async () => {
 
   rtlRender(
     <Form<typeof testData, typeof schema>
-      onSubmit={handleSubmit}
-      schema={schema}
       id="my-form"
+      schema={schema}
+      onSubmit={handleSubmit}
     >
       {({ register, formState }) => (
         <>

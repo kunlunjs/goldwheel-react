@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 
-import type { AxiosError } from 'axios'
 import { axios } from '@/lib/axios'
+import type { ExtractFnReturnType, QueryConfig } from '@/lib/react-query'
 import type { Comment } from '../types'
 
 export const getComments = ({
@@ -20,12 +20,11 @@ type QueryFnType = typeof getComments
 
 type UseCommentsOptions = {
   discussionId: string
-  config?: Partial<Parameters<typeof useQuery>[0]> // QueryConfig<QueryFnType>
+  config?: QueryConfig<QueryFnType>
 }
 
 export const useComments = ({ discussionId, config }: UseCommentsOptions) => {
-  return useQuery<Comment[], AxiosError>({
-    // ExtractFnReturnType<QueryFnType>
+  return useQuery<ExtractFnReturnType<QueryFnType>>({
     ...config,
     queryKey: ['comments', discussionId],
     queryFn: () => getComments({ discussionId })

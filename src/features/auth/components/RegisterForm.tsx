@@ -48,11 +48,11 @@ export const RegisterForm = ({ onSuccess }: RegisterFormProps) => {
   return (
     <div>
       <Form<RegisterValues, typeof schema>
+        schema={schema}
         onSubmit={async values => {
           await registerMutation.mutate(values)
           onSuccess()
         }}
-        schema={schema}
         options={{
           shouldUnregister: true
         }}

@@ -1,5 +1,6 @@
 import { useMutation } from '@tanstack/react-query'
 import { axios } from '@/lib/axios'
+import type { MutationConfig } from '@/lib/react-query'
 import { queryClient } from '@/lib/react-query'
 import { useNotificationStore } from '@/stores/notifications'
 
@@ -12,7 +13,7 @@ export const deleteUser = ({ userId }: DeleteUserDTO) => {
 }
 
 type UseDeleteUserOptions = {
-  config?: Partial<Parameters<typeof useMutation>[0]> // MutationConfig<typeof deleteUser>
+  config?: MutationConfig<typeof deleteUser>
 }
 
 export const useDeleteUser = ({ config }: UseDeleteUserOptions = {}) => {

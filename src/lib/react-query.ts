@@ -5,6 +5,7 @@ import type {
 } from '@tanstack/react-query'
 import { QueryClient } from '@tanstack/react-query'
 import type { AxiosError } from 'axios'
+import type { AsyncReturnType } from 'type-fest'
 
 const queryConfig: DefaultOptions = {
   queries: {
@@ -17,7 +18,7 @@ const queryConfig: DefaultOptions = {
 export const queryClient = new QueryClient({ defaultOptions: queryConfig })
 
 export type ExtractFnReturnType<FnType extends (...args: any) => any> =
-  Awaited<FnType>
+  AsyncReturnType<FnType>
 
 export type QueryConfig<QueryFnType extends (...args: any) => any> = Omit<
   UseQueryOptions<ExtractFnReturnType<QueryFnType>>,

@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
-import type { AxiosError } from 'axios'
 import { axios } from '@/lib/axios'
+import type { ExtractFnReturnType, QueryConfig } from '@/lib/react-query'
 import type { Discussion } from '../types'
 
 export const getDiscussions = (): Promise<Discussion[]> => {
@@ -10,12 +10,11 @@ export const getDiscussions = (): Promise<Discussion[]> => {
 type QueryFnType = typeof getDiscussions
 
 type UseDiscussionsOptions = {
-  config?: Partial<Parameters<typeof useQuery>[0]> // QueryConfig<QueryFnType>
+  config?: QueryConfig<QueryFnType>
 }
 
 export const useDiscussions = ({ config }: UseDiscussionsOptions = {}) => {
-  return useQuery<Discussion[], AxiosError>({
-    // ExtractFnReturnType<QueryFnType>
+  return useQuery<ExtractFnReturnType<QueryFnType>>({
     ...config,
     queryKey: ['discussions'],
     queryFn: () => getDiscussions()

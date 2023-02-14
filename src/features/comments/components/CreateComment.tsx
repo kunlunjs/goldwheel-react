@@ -38,6 +38,7 @@ export const CreateComment = ({ discussionId }: CreateCommentProps) => {
     >
       <Form<CreateCommentDTO['data'], typeof schema>
         id="create-comment"
+        schema={schema}
         onSubmit={async values => {
           await createCommentMutation.mutateAsync({
             data: {
@@ -46,7 +47,6 @@ export const CreateComment = ({ discussionId }: CreateCommentProps) => {
             }
           })
         }}
-        schema={schema}
       >
         {({ register, formState }) => (
           <TextAreaField

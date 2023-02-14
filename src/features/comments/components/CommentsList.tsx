@@ -1,13 +1,10 @@
 import { ArchiveBoxIcon } from '@heroicons/react/24/outline'
-
 import { Spinner, MDPreview } from '@/components/Elements'
 import type { User } from '@/features/users'
 import { useUser } from '@/lib/auth'
 import { POLICIES, Authorization } from '@/lib/authorization'
 import { formatDate } from '@/utils/format'
-
 import { useComments } from '../api/getComments'
-
 import { DeleteComment } from './DeleteComment'
 
 type CommentsListProps = {

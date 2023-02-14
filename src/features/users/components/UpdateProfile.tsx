@@ -39,6 +39,7 @@ export const UpdateProfile = () => {
     >
       <Form<UpdateProfileDTO['data'], typeof schema>
         id="update-profile"
+        schema={schema}
         onSubmit={async values => {
           await updateProfileMutation.mutateAsync({ data: values })
         }}
@@ -50,7 +51,6 @@ export const UpdateProfile = () => {
             last_name: user.data?.last_name
           }
         }}
-        schema={schema}
       >
         {({ register, formState }) => (
           <>

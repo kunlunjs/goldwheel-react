@@ -43,6 +43,7 @@ export const UpdateDiscussion = ({ discussionId }: UpdateDiscussionProps) => {
       >
         <Form<UpdateDiscussionDTO['data'], typeof schema>
           id="update-discussion"
+          schema={schema}
           onSubmit={async values => {
             await updateDiscussionMutation.mutateAsync({
               data: values,
@@ -55,7 +56,6 @@ export const UpdateDiscussion = ({ discussionId }: UpdateDiscussionProps) => {
               body: discussionQuery.data?.body
             }
           }}
-          schema={schema}
         >
           {({ register, formState }) => (
             <>
