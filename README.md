@@ -1,4 +1,14 @@
-# Galaxy
+# Universe
+
+## NOTE
+
+利用 `useMutation` 封装自定义 hook
+
+```tsx
+export const useSignUp = <T extends string>() => {
+  return useMutation<SuccessResponse, ErrorResponse<T>, Record<T, string>>(...)
+}
+```
 
 ## TODO
 

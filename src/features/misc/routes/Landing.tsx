@@ -18,7 +18,7 @@ export const Landing = () => {
 
   return (
     <>
-      <Head description="Welcome to Galaxy" />
+      <Head description="Welcome to Universe" />
       <div className="flex h-[100vh] items-center bg-white">
         <div className="mx-auto max-w-7xl py-12 px-4 text-center sm:px-6 lg:py-16 lg:px-8">
           <h2 className="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
@@ -52,7 +52,7 @@ export const Landing = () => {
             </div>
             <div className="ml-3 inline-flex">
               <a
-                href="http://gitlab.pegasus.tech/pbdata/Galaxy"
+                href="http://gitlab.pegasus.tech/pbdata/Universe"
                 target="_blank"
                 rel="noreferrer"
               >
