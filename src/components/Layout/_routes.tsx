@@ -1,13 +1,22 @@
 import {
   AimOutlined,
   ApiOutlined,
+  BarsOutlined,
+  BlockOutlined,
+  BookOutlined,
+  BugOutlined,
   CloudServerOutlined,
+  CodeOutlined,
   CrownFilled,
   DatabaseFilled,
   DatabaseOutlined,
+  EditOutlined,
+  HeatMapOutlined,
   RobotOutlined,
   SettingOutlined,
-  SmileFilled
+  SmileFilled,
+  TrophyOutlined,
+  UngroupOutlined
 } from '@ant-design/icons'
 
 export const routes = {
@@ -30,8 +39,28 @@ export const routes = {
           {
             path: '/data-portal/perception',
             name: '感知数据',
-            icon: 'https://gw.alipayobjects.com/zos/antfincdn/upvrAjAPQX/Logo_Tech%252520UI.svg',
-            component: './Welcome'
+            icon: <HeatMapOutlined />,
+            component: './Welcome',
+            routes: [
+              {
+                path: '/data-portal/perception/clip-list',
+                name: 'Clip List',
+                icon: <DatabaseOutlined />,
+                component: './Welcome'
+              },
+              {
+                path: '/data-portal/perception/frame-list',
+                name: 'Frame List',
+                icon: <DatabaseOutlined />,
+                component: './Welcome'
+              },
+              {
+                path: '/data-portal/perception/corner-cases',
+                name: 'Corner Cases',
+                icon: <DatabaseOutlined />,
+                component: './Welcome'
+              }
+            ]
           },
           {
             path: '/data-portal/road-test',
@@ -60,22 +89,88 @@ export const routes = {
             ]
           },
           {
-            path: '/data-portal/sub-page3',
+            path: '/data-portal/map',
             name: '地图数据',
             icon: <AimOutlined />,
-            component: './Welcome'
+            component: './Welcome',
+            routes: [
+              {
+                path: '/data-portal/map/raw',
+                name: 'Raw Data',
+                icon: <DatabaseOutlined />,
+                component: './Welcome'
+              },
+              {
+                path: '/data-portal/map/pcd',
+                name: 'PCD Data',
+                icon: <DatabaseOutlined />,
+                component: './Welcome'
+              },
+              {
+                path: '/data-portal/map/gcp',
+                name: 'GCP Data',
+                icon: <DatabaseOutlined />,
+                component: './Welcome'
+              },
+              {
+                path: '/data-portal/map/hd-map',
+                name: 'HDMap Data',
+                icon: <DatabaseOutlined />,
+                component: './Welcome'
+              },
+              {
+                path: '/data-portal/map/intermediate',
+                name: 'Intermediate Data',
+                icon: <DatabaseOutlined />,
+                component: './Welcome'
+              }
+            ]
           },
           {
-            path: '/data-portal/sub-page4',
+            path: '/data-portal/setting',
             name: '配置管理',
             icon: <SettingOutlined />,
-            component: './Welcome'
+            component: './Welcome',
+            routes: [
+              {
+                path: '/data-portal/setting/biz-configs',
+                name: 'Biz Configs',
+                icon: <DatabaseOutlined />,
+                component: './Welcome'
+              },
+              {
+                path: '/data-portal/setting/predefined-tags',
+                name: 'Predefined Tags',
+                icon: <DatabaseOutlined />,
+                component: './Welcome'
+              }
+            ]
           },
           {
-            path: '/data-portal/sub-page5',
+            path: '/data-portal/auth',
             name: '权限管理',
             icon: <ApiOutlined />,
-            component: './Welcome'
+            component: './Welcome',
+            routes: [
+              {
+                path: '/data-portal/auth/users',
+                name: 'Users',
+                icon: <DatabaseOutlined />,
+                component: './Welcome'
+              },
+              {
+                path: '/data-portal/auth/roles',
+                name: 'Roles',
+                icon: <DatabaseOutlined />,
+                component: './Welcome'
+              },
+              {
+                path: '/data-portal/auth/permissions',
+                name: 'Permissions',
+                icon: <DatabaseOutlined />,
+                component: './Welcome'
+              }
+            ]
           }
         ]
       },
@@ -95,44 +190,64 @@ export const routes = {
         component: './ListTableList',
         routes: [
           {
-            path: '/ai-platform/sub-page',
-            name: '数据集管理',
-            icon: <CrownFilled />,
+            path: '/ai-platform/dataset',
+            name: '数据管理',
+            icon: <DatabaseOutlined />
+          },
+          {
+            path: '/ai-platform/model',
+            name: '模型管理',
+            icon: <BlockOutlined />,
+            component: './Welcome',
             routes: [
               {
-                path: 'sub-sub-page1',
-                name: '数据列表',
-                icon: <CrownFilled />,
+                path: '/ai-platform/model/list',
+                name: '模型列表',
+                icon: <BarsOutlined />,
+                component: './Welcome'
+              },
+              {
+                path: '/ai-platform/model/optimization',
+                name: '模型优化',
+                icon: <BugOutlined />,
                 component: './Welcome'
               }
             ]
           },
           {
-            path: '/ai-platform/sub-page2',
-            name: '模型管理',
-            icon: <CrownFilled />,
-            component: './Welcome'
-          },
-          {
-            path: '/ai-platform/sub-page3',
+            path: '/ai-platform/train',
             name: '训练管理',
-            icon: <CrownFilled />,
+            icon: <UngroupOutlined />,
             component: './Welcome'
           },
           {
-            path: '/ai-platform/sub-page4',
+            path: '/ai-platform/image',
             name: '镜像管理',
-            icon: <CrownFilled />,
+            icon: <TrophyOutlined />,
             component: './Welcome'
           },
           {
-            path: '/ai-platform/sub-page5',
-            name: '算法管理',
-            icon: <CrownFilled />,
-            component: './Welcome'
+            path: '/ai-platform/algo',
+            name: '算法开发',
+            icon: <EditOutlined />,
+            component: './Welcome',
+            routes: [
+              {
+                path: '/ai-platform/algo/notebook',
+                name: 'Notebook',
+                icon: <BookOutlined />,
+                component: './Welcome'
+              },
+              {
+                path: '/ai-platform/algo/list',
+                name: '算法管理',
+                icon: <CodeOutlined />,
+                component: './Welcome'
+              }
+            ]
           },
           {
-            path: '/ai-platform/sub-page6',
+            path: '/ai-platform/deploy',
             name: '云端部署',
             icon: <CrownFilled />,
             component: './Welcome'

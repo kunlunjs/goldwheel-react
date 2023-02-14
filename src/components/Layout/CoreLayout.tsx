@@ -50,9 +50,11 @@ export const CoreLayout = () => {
         location={{
           pathname
         }}
-        menu={{
-          type: 'group'
-        }}
+        menu={
+          {
+            // type: 'group'
+          }
+        }
         title="Pegasus"
         logo={null}
         // logo="http://dataportal.pegasus.tech/logo.png"
