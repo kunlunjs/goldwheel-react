@@ -2,19 +2,15 @@ import { Suspense } from 'react'
 import { Navigate, Outlet } from 'react-router-dom'
 import { Spinner } from '@/components/Elements'
 import { MainLayout } from '@/components/Layout'
-import { DiscussionsRoutes } from '@/features/discussions'
-import { Dashboard } from '@/features/misc'
-import { Users, Profile } from '@/features/users'
-// TODO
-// import { lazyImport } from '@/utils/lazyImport'
+import { lazyImport } from '@/utils/lazyImport'
 
-// const { DiscussionsRoutes } = lazyImport(
-//   () => import('@/features/discussions'),
-//   'DiscussionsRoutes'
-// )
-// const { Dashboard } = lazyImport(() => import('@/features/misc'), 'Dashboard')
-// const { Profile } = lazyImport(() => import('@/features/users'), 'Profile')
-// const { Users } = lazyImport(() => import('@/features/users'), 'Users')
+const { DiscussionsRoutes } = lazyImport(
+  () => import('@/features/discussions'),
+  'DiscussionsRoutes'
+)
+const { Dashboard } = lazyImport(() => import('@/features/misc'), 'Dashboard')
+const { Profile } = lazyImport(() => import('@/features/users'), 'Profile')
+const { Users } = lazyImport(() => import('@/features/users'), 'Users')
 
 const App = () => {
   return (
