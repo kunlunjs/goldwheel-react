@@ -3,6 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@ant-design/icons': ^5.0.1
   '@ant-design/pro-card': ^2.1.12
+  '@ant-design/pro-components': ^2.3.54
   '@ant-design/pro-descriptions': ^2.0.46
   '@ant-design/pro-form': ^2.5.6
   '@ant-design/pro-layout': ^7.7.1
@@ -90,6 +91,7 @@ specifiers:
 dependencies:
   '@ant-design/icons': 5.0.1_biqbaboplfbrettd7655fr4n2y
   '@ant-design/pro-card': 2.1.12_zziuzmw57eovk2ycxuppotpvc4
+  '@ant-design/pro-components': 2.3.54_zziuzmw57eovk2ycxuppotpvc4
   '@ant-design/pro-descriptions': 2.0.46_zziuzmw57eovk2ycxuppotpvc4
   '@ant-design/pro-form': 2.5.6_zziuzmw57eovk2ycxuppotpvc4
   '@ant-design/pro-layout': 7.7.1_zziuzmw57eovk2ycxuppotpvc4
@@ -273,6 +275,32 @@ packages:
       react: 18.2.0
     transitivePeerDependencies:
       - react-dom
+    dev: false
+
+  /@ant-design/pro-components/2.3.54_zziuzmw57eovk2ycxuppotpvc4:
+    resolution: {integrity: sha512-kKXxs1U50BHGEe4dTVttqw/lvZHdbzlrBAuugP39eY/tNUlZyl0C1f0u+W7VsNYed6q6KV9aYm0zTWv0vBZ9TQ==}
+    peerDependencies:
+      antd: '>=4.23.0'
+      react: '>=16.9.0'
+      react-dom: '>=16.9.0'
+    dependencies:
+      '@ant-design/pro-card': 2.1.12_zziuzmw57eovk2ycxuppotpvc4
+      '@ant-design/pro-descriptions': 2.0.46_zziuzmw57eovk2ycxuppotpvc4
+      '@ant-design/pro-field': 2.2.7_zziuzmw57eovk2ycxuppotpvc4
+      '@ant-design/pro-form': 2.5.6_zziuzmw57eovk2ycxuppotpvc4
+      '@ant-design/pro-layout': 7.7.1_zziuzmw57eovk2ycxuppotpvc4
+      '@ant-design/pro-list': 2.0.47_zziuzmw57eovk2ycxuppotpvc4
+      '@ant-design/pro-provider': 2.4.2_zziuzmw57eovk2ycxuppotpvc4
+      '@ant-design/pro-skeleton': 2.0.8_zziuzmw57eovk2ycxuppotpvc4
+      '@ant-design/pro-table': 3.2.14_zziuzmw57eovk2ycxuppotpvc4
+      '@ant-design/pro-utils': 2.5.6_zziuzmw57eovk2ycxuppotpvc4
+      '@babel/runtime': 7.20.13
+      antd: 5.2.1_biqbaboplfbrettd7655fr4n2y
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+    transitivePeerDependencies:
+      - '@types/lodash.merge'
+      - rc-field-form
     dev: false
 
   /@ant-design/pro-descriptions/2.0.46_zziuzmw57eovk2ycxuppotpvc4:
