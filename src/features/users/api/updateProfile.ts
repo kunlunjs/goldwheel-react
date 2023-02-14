@@ -1,15 +1,14 @@
 import { useMutation } from '@tanstack/react-query'
 import { useUser } from '@/lib/auth'
 import { axios } from '@/lib/axios'
-import type { MutationConfig } from '@/lib/react-query'
 import { useNotificationStore } from '@/stores/notifications'
 
 export type UpdateProfileDTO = {
   data: {
+    bio: string
     email: string
     first_name: string
     last_name: string
-    bio: string
   }
 }
 
@@ -18,13 +17,14 @@ export const updateProfile = ({ data }: UpdateProfileDTO) => {
 }
 
 type UseUpdateProfileOptions = {
-  config?: MutationConfig<typeof updateProfile>
+  config?: Partial<Parameters<typeof useMutation>[0]> // MutationConfig<typeof updateProfile>
 }
 
 export const useUpdateProfile = ({ config }: UseUpdateProfileOptions = {}) => {
   const { addNotification } = useNotificationStore()
   const user = useUser()
   return useMutation({
+    ...config,
     onSuccess: () => {
       addNotification({
         type: 'success',
@@ -32,8 +32,6 @@ export const useUpdateProfile = ({ config }: UseUpdateProfileOptions = {}) => {
       })
       user.refetch()
     },
-    ...config,
-    // @ts-ignore
     mutationFn: updateProfile
   })
 }

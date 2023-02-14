@@ -51,9 +51,7 @@ export const UpdateDiscussion = ({ discussionId }: UpdateDiscussionProps) => {
           }}
           options={{
             defaultValues: {
-              // @ts-ignore
               title: discussionQuery.data?.title,
-              // @ts-ignore
               body: discussionQuery.data?.body
             }
           }}

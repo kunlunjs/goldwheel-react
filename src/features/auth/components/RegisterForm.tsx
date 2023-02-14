@@ -108,7 +108,6 @@ export const RegisterForm = ({ onSuccess }: RegisterFormProps) => {
                 label="Team"
                 error={formState.errors['team_id']}
                 registration={register('team_id')}
-                // @ts-ignore
                 options={teamsQuery?.data?.map(team => ({
                   label: team.name,
                   value: team.id

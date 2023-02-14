@@ -1,9 +1,9 @@
 export type AuthUser = {
   id: string
   email: string
+  bio: string
   first_name: string
   last_name: string
-  bio: string
   role: 'ADMIN' | 'USER'
 }
 

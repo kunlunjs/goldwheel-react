@@ -46,9 +46,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         type={type}
         className={clsx(
           'flex items-center justify-center rounded-md border border-gray-300 font-medium shadow-sm hover:opacity-80 focus:outline-none disabled:cursor-not-allowed disabled:opacity-70',
-          // @ts-ignore
           variants[variant],
-          // @ts-ignore
           sizes[size],
           className
         )}

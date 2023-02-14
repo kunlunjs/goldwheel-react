@@ -3,13 +3,13 @@ import { factory, primaryKey } from '@mswjs/data'
 const models = {
   user: {
     id: primaryKey(String),
+    bio: String,
+    email: String,
     first_name: String,
     last_name: String,
-    email: String,
     password: String,
     team_id: String,
     role: String,
-    bio: String,
     created_at: Number
   },
   team: {

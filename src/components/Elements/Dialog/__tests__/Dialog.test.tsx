@@ -30,17 +30,14 @@ const TestDialog = () => {
 
 test('should handle basic dialog flow', async () => {
   await rtlRender(<TestDialog />)
-  // @ts-ignore
   expect(screen.queryByText(titleText)).not.toBeInTheDocument()
 
   await userEvent.click(screen.getByRole('button', { name: openButtonText }))
-  // @ts-ignore
   expect(screen.getByText(titleText)).toBeInTheDocument()
 
   await userEvent.click(screen.getByRole('button', { name: cancelButtonText }))
 
   await waitFor(() =>
-    // @ts-ignore
     expect(screen.queryByText(titleText)).not.toBeInTheDocument()
   )
 })

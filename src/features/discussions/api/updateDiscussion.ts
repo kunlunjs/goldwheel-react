@@ -1,6 +1,5 @@
 import { useMutation } from '@tanstack/react-query'
 import { axios } from '@/lib/axios'
-import type { MutationConfig } from '@/lib/react-query'
 import { queryClient } from '@/lib/react-query'
 import { useNotificationStore } from '@/stores/notifications'
 
@@ -22,7 +21,7 @@ export const updateDiscussion = ({
 }
 
 type UseUpdateDiscussionOptions = {
-  config?: MutationConfig<typeof updateDiscussion>
+  config?: Partial<Parameters<typeof useMutation>[0]> // MutationConfig<typeof updateDiscussion>
 }
 
 export const useUpdateDiscussion = ({
@@ -31,7 +30,7 @@ export const useUpdateDiscussion = ({
   const { addNotification } = useNotificationStore()
 
   return useMutation({
-    // @ts-ignore
+    ...config,
     onSuccess: data => {
       queryClient.refetchQueries(['discussion', data.id])
       addNotification({
@@ -39,8 +38,6 @@ export const useUpdateDiscussion = ({
         title: 'Discussion Updated'
       })
     },
-    ...config,
-    // @ts-ignore
     mutationFn: updateDiscussion
   })
 }

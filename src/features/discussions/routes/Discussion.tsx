@@ -27,12 +27,9 @@ export const Discussion = () => {
 
   return (
     <>
-      {/* @ts-ignore */}
       <Head title={discussionQuery.data.title} />
-      {/* @ts-ignore */}
       <ContentLayout title={discussionQuery.data.title}>
         <span className="text-xs font-bold">
-          {/* @ts-ignore */}
           {formatDate(discussionQuery.data.created_at)}
         </span>
         <div className="mt-6 flex flex-col space-y-16">
@@ -43,7 +40,6 @@ export const Discussion = () => {
             <div className="overflow-hidden bg-white shadow sm:rounded-lg">
               <div className="px-4 py-5 sm:px-6">
                 <div className="mt-1 max-w-2xl text-sm text-gray-500">
-                  {/* @ts-ignore */}
                   <MDPreview value={discussionQuery.data.body} />
                 </div>
               </div>

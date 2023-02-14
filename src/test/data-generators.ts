@@ -4,14 +4,14 @@ type Overrides = Record<string, any>
 
 export const userGenerator = (overrides?: Overrides) => ({
   id: faker.datatype.uuid(),
+  bio: faker.lorem.sentence(),
+  email: faker.internet.email(),
   first_name: faker.internet.userName(),
   last_name: faker.internet.userName(),
-  email: faker.internet.email(),
   password: faker.internet.password(),
   team_id: faker.datatype.uuid(),
   team_name: faker.company.name(),
   role: 'ADMIN',
-  bio: faker.lorem.sentence(),
   created_at: Date.now(),
   ...overrides
 })

@@ -8,9 +8,9 @@ import type { AxiosError } from 'axios'
 
 const queryConfig: DefaultOptions = {
   queries: {
+    retry: false,
     useErrorBoundary: true,
-    refetchOnWindowFocus: false,
-    retry: false
+    refetchOnWindowFocus: false
   }
 }
 

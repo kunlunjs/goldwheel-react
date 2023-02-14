@@ -1,6 +1,5 @@
 import { useMutation } from '@tanstack/react-query'
 import { axios } from '@/lib/axios'
-import type { MutationConfig } from '@/lib/react-query'
 import { queryClient } from '@/lib/react-query'
 import { useNotificationStore } from '@/stores/notifications'
 
@@ -20,7 +19,7 @@ export const createDiscussion = ({
 }
 
 type UseCreateDiscussionOptions = {
-  config?: MutationConfig<typeof createDiscussion>
+  config?: Partial<Parameters<typeof useMutation>[0]> // MutationConfig<typeof createDiscussion>
 }
 
 export const useCreateDiscussion = ({
@@ -28,6 +27,7 @@ export const useCreateDiscussion = ({
 }: UseCreateDiscussionOptions = {}) => {
   const { addNotification } = useNotificationStore()
   return useMutation({
+    ...config,
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: ['discussions'] })
       addNotification({
@@ -35,8 +35,6 @@ export const useCreateDiscussion = ({
         title: 'Discussion Created'
       })
     },
-    ...config,
-    // @ts-ignore
     mutationFn: createDiscussion
   })
 }

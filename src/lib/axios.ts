@@ -1,13 +1,13 @@
-import type { AxiosHeaders, AxiosRequestConfig } from 'axios'
+import type { InternalAxiosRequestConfig } from 'axios'
 import Axios from 'axios'
 import { API_URL } from '@/config'
 import { useNotificationStore } from '@/stores/notifications'
 import storage from '@/utils/storage'
 
-function authRequestInterceptor(config: AxiosRequestConfig) {
+function authRequestInterceptor(config: InternalAxiosRequestConfig) {
   const token = storage.getToken()
   if (token) {
-    ;(config.headers as AxiosHeaders).set('authorization', `${token}`)
+    config.headers.set('authorization', `${token}`)
   }
 
   return config
@@ -19,7 +19,6 @@ export const axios = Axios.create({
     'Content-Type': 'application/json'
   }
 })
-// @ts-ignore
 axios.interceptors.request.use(authRequestInterceptor)
 axios.interceptors.response.use(
   response => {

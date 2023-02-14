@@ -1,6 +1,5 @@
 import { useMutation } from '@tanstack/react-query'
 import { axios } from '@/lib/axios'
-import type { MutationConfig } from '@/lib/react-query'
 import { queryClient } from '@/lib/react-query'
 import { useNotificationStore } from '@/stores/notifications'
 import type { Comment } from '../types'
@@ -18,7 +17,7 @@ export const createComment = ({ data }: CreateCommentDTO): Promise<Comment> => {
 
 type UseCreateCommentOptions = {
   discussionId: string
-  config?: MutationConfig<typeof createComment>
+  config?: Partial<Parameters<typeof useMutation>[0]> // MutationConfig<typeof createComment>
 }
 
 export const useCreateComment = ({
@@ -28,6 +27,7 @@ export const useCreateComment = ({
   const { addNotification } = useNotificationStore()
 
   return useMutation({
+    ...config,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['comments', discussionId] })
       addNotification({
@@ -35,8 +35,6 @@ export const useCreateComment = ({
         title: 'Comment Created'
       })
     },
-    ...config,
-    // @ts-ignore
     mutationFn: createComment
   })
 }

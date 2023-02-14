@@ -26,7 +26,6 @@ export const CommentsList = ({ discussionId }: CommentsListProps) => {
     )
   }
 
-  // @ts-ignore
   if (!commentsQuery?.data?.length)
     return (
       <div
@@ -41,7 +40,6 @@ export const CommentsList = ({ discussionId }: CommentsListProps) => {
 
   return (
     <ul aria-label="comments" className="flex flex-col space-y-3">
-      {/* @ts-ignore */}
       {commentsQuery.data.map((comment, index) => (
         <li
           aria-label={`comment-${comment.body}-${index}`}

@@ -5,9 +5,9 @@ import { requireAuth, requireAdmin, delayedResponse } from '../utils'
 
 type ProfileBody = {
   email: string
+  bio: string
   first_name: string
   last_name: string
-  bio: string
 }
 
 export const usersHandlers = [

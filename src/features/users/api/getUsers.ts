@@ -1,7 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
+import type { AxiosError } from 'axios'
 import { axios } from '@/lib/axios'
-import type { ExtractFnReturnType, QueryConfig } from '@/lib/react-query'
-
 import type { User } from '../types'
 
 export const getUsers = (): Promise<User[]> => {
@@ -11,13 +10,13 @@ export const getUsers = (): Promise<User[]> => {
 type QueryFnType = typeof getUsers
 
 type UseUsersOptions = {
-  config?: QueryConfig<QueryFnType>
+  config?: Partial<Parameters<typeof useQuery>[0]> // QueryConfig<QueryFnType>
 }
 
 export const useUsers = ({ config }: UseUsersOptions = {}) => {
-  return useQuery<ExtractFnReturnType<QueryFnType>>({
+  return useQuery<User[], AxiosError>({
+    // ExtractFnReturnType<QueryFnType>
     ...config,
-    // @ts-ignore
     queryKey: ['users'],
     queryFn: () => getUsers()
   })

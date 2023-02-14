@@ -19,7 +19,6 @@ export const UsersList = () => {
 
   return (
     <Table<User>
-      // @ts-ignore
       data={usersQuery.data}
       columns={[
         {

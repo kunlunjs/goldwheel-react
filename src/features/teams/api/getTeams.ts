@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
+import type { AxiosError } from 'axios'
 import { axios } from '@/lib/axios'
-import type { ExtractFnReturnType, QueryConfig } from '@/lib/react-query'
 import type { Team } from '../types'
 
 export const getTeams = (): Promise<Team[]> => {
@@ -10,13 +10,13 @@ export const getTeams = (): Promise<Team[]> => {
 type QueryFnType = typeof getTeams
 
 type UseTeamsOptions = {
-  config?: QueryConfig<QueryFnType>
+  config?: Partial<Parameters<typeof useQuery>[0]> // QueryConfig<QueryFnType>
 }
 
-export const useTeams = ({ config = {} }: UseTeamsOptions = {}) => {
-  return useQuery<ExtractFnReturnType<QueryFnType>>({
+export const useTeams = ({ config }: UseTeamsOptions = {}) => {
+  return useQuery<Team[], AxiosError>({
+    // ExtractFnReturnType<QueryFnType>
     ...config,
-    // @ts-ignore
     queryKey: ['teams'],
     queryFn: () => getTeams()
   })

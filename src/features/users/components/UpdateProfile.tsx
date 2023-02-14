@@ -44,10 +44,10 @@ export const UpdateProfile = () => {
         }}
         options={{
           defaultValues: {
-            first_name: user.data?.first_name,
-            last_name: user.data?.last_name,
             email: user.data?.email,
-            bio: user.data?.bio
+            bio: user.data?.bio,
+            first_name: user.data?.first_name,
+            last_name: user.data?.last_name
           }
         }}
         schema={schema}

@@ -1,10 +1,10 @@
 import type { BaseEntity } from '@/types'
 
 export type User = {
+  bio: string
+  email: string
   first_name: string
   last_name: string
-  email: string
-  role: 'ADMIN' | 'USER'
   team_id: string
-  bio: string
+  role: 'ADMIN' | 'USER'
 } & BaseEntity

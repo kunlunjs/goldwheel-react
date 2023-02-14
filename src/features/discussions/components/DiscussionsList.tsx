@@ -20,7 +20,6 @@ export const DiscussionsList = () => {
 
   return (
     <Table<Discussion>
-      // @ts-ignore
       data={discussionsQuery.data}
       columns={[
         {
