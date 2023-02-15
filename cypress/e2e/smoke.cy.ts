@@ -1,3 +1,8 @@
+/* eslint-disable testing-library/await-async-utils */
+/* eslint-disable cypress/no-unnecessary-waiting */
+/* eslint-disable testing-library/prefer-screen-queries */
+/* eslint-disable testing-library/await-async-query */
+/* eslint-disable jest/valid-title */
 import {
   userGenerator,
   discussionGenerator,
