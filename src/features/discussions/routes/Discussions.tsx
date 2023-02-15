@@ -1,6 +1,7 @@
 import { ContentLayout } from '@/components/Layout'
 import { CreateDiscussion } from '../components/CreateDiscussion'
-import { DiscussionsList } from '../components/DiscussionsList.antd'
+import { DiscussionsList } from '../components/DiscussionsList'
+// import { DiscussionsList } from '../components/DiscussionsList.antd'
 
 export const Discussions = () => {
   return (

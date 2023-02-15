@@ -12,8 +12,10 @@ export const useSignUp = <T extends string>() => {
 
 ## TODO
 
--   [ ] remove all `@ts-ignore`
--   [ ] remove console warning
+-   [x] remove all `@ts-ignore`
+-   [x] remove console warning
+-   [ ] add gitlab-ci.yaml
+-   [ ] import antd components library
 -   [ ] develop AI platform
 -   [ ] migrate [DataPortal](http://gitlab.pegasus.tech/pbdata/data_portal_web) code
 -   [ ] migrate [AutoBot]() Code

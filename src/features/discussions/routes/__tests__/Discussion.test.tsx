@@ -10,7 +10,6 @@ import {
   createUser,
   within
 } from '@/test/test-utils'
-
 import { Discussion } from '../Discussion'
 
 vi.mock('react-router-dom', async () => {

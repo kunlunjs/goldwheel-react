@@ -1,5 +1,6 @@
 # https://hub.docker.com/_/node
-FROM node:18.14.0-alpine3.16 as builder
+# https://harbor.pegasus.tech/harbor/projects/4/repositories/node18.14.0-alpine3.16-pnpm
+FROM harbor.pegasus.tech/pbdata/node18.14.0-alpine3.16-pnpm:7.27.0 as builder
 COPY . /
 
 RUN npx pnpm i --registry https://registry.npmmirror.com
