@@ -1,0 +1,90 @@
+variables:
+  IMAGE_NAME: ${CI_REGISTRY}/pbdata/universe
+
+stages:
+  - prep
+  # - check-types
+  - build
+  - deploy
+
+build-prep:
+  stage: prep
+  tags:
+    - k8s-dev-shanghai
+  image:
+    name: ${CI_REGISTRY}/infra/kaniko-project/executor:debug-1.7.0
+    entrypoint: ['']
+  script:
+    - echo IMAGE_TAG=${CI_COMMIT_TAG:-"`date +"%Y%m%d"`-${CI_COMMIT_SHORT_SHA}"} >> build.env
+  artifacts:
+    reports:
+      dotenv: build.env
+    expire_in: never
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event" || $CI_PIPELINE_SOURCE == "web" || $CI_PIPELINE_SOURCE == "tag"'
+
+universe-build:
+  stage: build
+  tags:
+    - k8s-dev-shanghai
+  image:
+    name: ${CI_REGISTRY}/infra/kaniko-project/executor:debug-1.7.0
+    entrypoint: ['']
+  before_script:
+    - |
+    - echo "{\"insecure-registries\":{\"$CI_REGISTRY\"}}" > /kaniko/.docker/daemon.json
+    - ln -sf ${DOCKER_LOGIN_JSON} /kaniko/.docker/config.json
+  script:
+    - /kaniko/executor --skip-tls-verify --context ${CI_PROJECT_DIR} --dockerfile docker/Dockerfile --destination ${IMAGE_NAME}:${IMAGE_TAG}
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event" || $CI_PIPELINE_SOURCE == "web"'
+  dependencies:
+    - build-prep
+
+universe-tag-build:
+  stage: build
+  tags:
+    - k8s-dev-shanghai
+  image:
+    name: ${CI_REGISTRY}/infra/kaniko-project/executor:debug-1.7.0
+    entrypoint: ['']
+  before_script:
+    - |
+    - echo "{\"insecure-registries\":{\"$CI_REGISTRY\"}}" > /kaniko/.docker/daemon.json
+    - ln -sf ${DOCKER_LOGIN_JSON} /kaniko/.docker/config.json
+  script:
+    - /kaniko/executor --skip-tls-verify --context ${CI_PROJECT_DIR} --dockerfile docker/Dockerfile --destination ${IMAGE_NAME}:${IMAGE_TAG} --destination ${IMAGE_NAME}:latest
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "tag"'
+  dependencies:
+    - build-prep
+
+universe-dev-deploy:
+  image: ${CI_REGISTRY}/infra/image-updater:v0.0.3
+  stage: deploy
+  tags:
+    - k8s-dev-shanghai
+  script:
+    - /root/image-updater update --driver gitlab --api-endpoint http://gitlab.pegasus.tech --file-path k8s/universe/values.yaml --image-repo ${IMAGE_NAME} --source-repo cloud/galaxy --update-key image.tag --auth_token ${GALAXY_PUSH_TOKEN} --source-branch deploy_dev --new-image-url ${IMAGE_TAG}
+  environment:
+    name: k8s-dev-shanghai
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event" || $CI_PIPELINE_SOURCE == "web" || $CI_PIPELINE_SOURCE == "tag"'
+  dependencies:
+    - build-prep
+  when: manual
+
+universe-prod-deploy:
+  image: ${CI_REGISTRY}/infra/image-updater:v0.0.3
+  stage: deploy
+  tags:
+    - k8s-prod
+  script:
+    - /root/image-updater update --driver gitlab --api-endpoint http://gitlab.pegasus.tech --file-path k8s/universe/values-prod.yaml --image-repo ${IMAGE_NAME} --source-repo cloud/galaxy --update-key image.tag --auth_token ${GALAXY_PUSH_TOKEN} --source-branch master --branch-generate-name universe-prod-deploy- --new-image-url ${IMAGE_TAG}
+  environment:
+    name: k8s-prod-shanghai
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event" || $CI_PIPELINE_SOURCE == "web" || $CI_PIPELINE_SOURCE == "tag"'
+  dependencies:
+    - build-prep
+  when: manual
