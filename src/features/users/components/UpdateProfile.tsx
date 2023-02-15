@@ -45,8 +45,8 @@ export const UpdateProfile = () => {
         }}
         options={{
           defaultValues: {
-            email: user.data?.email,
             bio: user.data?.bio,
+            email: user.data?.email,
             first_name: user.data?.first_name,
             last_name: user.data?.last_name
           }

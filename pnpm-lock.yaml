@@ -42,7 +42,7 @@ specifiers:
   '@types/node': ^18.13.0
   '@types/prettier': ^2.7.2
   '@types/react': ^18.0.28
-  '@types/react-dom': ^18.0.10
+  '@types/react-dom': ^18.0.11
   '@types/testing-library__jest-dom': ^5.14.5
   '@vitejs/plugin-react': ^3.1.0
   '@vitest/ui': ^0.28.5
@@ -120,7 +120,6 @@ dependencies:
   react-hook-form: 7.43.1_react@18.2.0
   react-query-auth: 2.0.0_wblzb7au4oppagvwxyabwi4emi
   react-router-dom: 6.8.1_biqbaboplfbrettd7655fr4n2y
-  type-fest: 3.5.7
   zod: 3.20.6
   zustand: 4.3.3_react@18.2.0
 
@@ -152,7 +151,7 @@ devDependencies:
   '@types/node': 18.13.0
   '@types/prettier': 2.7.2
   '@types/react': 18.0.28
-  '@types/react-dom': 18.0.10
+  '@types/react-dom': 18.0.11
   '@types/testing-library__jest-dom': 5.14.5
   '@vitejs/plugin-react': 3.1.0_vite@4.1.1
   '@vitest/ui': 0.28.5
@@ -173,6 +172,7 @@ devDependencies:
   start-server-and-test: 1.15.4
   stylelint: 15.1.0
   tailwindcss: 3.2.6_postcss@8.4.21
+  type-fest: 3.5.7
   typescript: 4.9.5
   vite: 4.1.1_@types+node@18.13.0
   vite-tsconfig-paths: 4.0.5_typescript@4.9.5
@@ -4518,7 +4518,7 @@ packages:
     dependencies:
       '@babel/runtime': 7.20.13
       '@testing-library/dom': 8.20.0
-      '@types/react-dom': 18.0.10
+      '@types/react-dom': 18.0.11
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
     dev: true
@@ -4784,8 +4784,8 @@ packages:
     resolution: {integrity: sha512-FGa1F62FT09qcrueBA6qYTrJPVDzah9a+493+o2PCXsesWHIn27G98TsSMs3WPNbZIEj4+VJf6saSFpvD+3Zsw==}
     dev: true
 
-  /@types/react-dom/18.0.10:
-    resolution: {integrity: sha512-E42GW/JA4Qv15wQdqJq8DL4JhNpB3prJgjgapN3qJT9K2zO5IIAQh4VXvCEDupoqAwnz0cY4RlXeC/ajX5SFHg==}
+  /@types/react-dom/18.0.11:
+    resolution: {integrity: sha512-O38bPbI2CWtgw/OoQoY+BRelw7uysmXbWvw3nLWO21H1HSh+GOlqPuXshJfjmpNlKiiSDG9cc1JZAaMmVdcTlw==}
     dependencies:
       '@types/react': 18.0.28
     dev: true
@@ -17722,6 +17722,7 @@ packages:
   /type-fest/3.5.7:
     resolution: {integrity: sha512-6J4bYzb4sdkcLBty4XW7F18VPI66M4boXNE+CY40532oq2OJe6AVMB5NmjOp6skt/jw5mRjz/hLRpuglz0U+FA==}
     engines: {node: '>=14.16'}
+    dev: true
 
   /type-is/1.6.18:
     resolution: {integrity: sha512-TkRKr9sUTxEH8MdfuCSP7VizJyzRNMjj2J2do2Jr3Kym598JVdEksuzPQCnlFPW4ky9Q+iA+ma9BGm06XQBy8g==}
