@@ -1,0 +1,52 @@
+{
+  "name": "@pegasus/{{componentName}}",
+  "version": "1.0.0",
+  "description": "{{description}}",
+  "keywords": [
+    "{{componentName}}"
+  ],
+  "author": "Yudong zhuyudong <zhuyudong@pegasus.tech>",
+  "homepage": "https://github.com/pegasus-tech/components.pegasus.tech#readme",
+  "license": "MIT",
+  "main": "src/index.ts",
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pegasus-tech/components.git",
+    "directory": "{{outDir}}/{{componentName}}"
+  },
+  "bugs": {
+    "url": "https://github.com/pegasus-tech/pegasus-design/issues"
+  },
+  "scripts": {
+    "build": "tsup src --dts",
+    "dev": "pnpm build:fast -- --watch",
+    "clean": "rimraf dist .turbo",
+    "typecheck": "tsc --noEmit",
+    "build:fast": "tsup src",
+    "prepack": "clean-package",
+    "postpack": "clean-package restore"
+  },
+  "peerDependencies": {
+    "react": ">=18"
+  },
+  "devDependencies": {
+    "clean-package": "2.1.1",
+    "react": "^18.2.0"
+  },
+  "clean-package": "../../../clean-package.config.json",
+  "tsup": {
+    "clean": true,
+    "target": "es2019",
+    "format": [
+      "cjs",
+      "esm"
+    ]
+  }
+}

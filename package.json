@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "",
   "scripts": {
-    "postinstall": "husky install",
+    "prepare": "husky install",
     "dev": "vite --port=3000",
     "build": "vite build",
     "preview": "vite preview --port 3000",
@@ -12,14 +12,17 @@
     "cy:headless": "cypress run",
     "e2e": "start-server-and-test start http://localhost:3000 cy:open",
     "e2e:headless": "start-server-and-test start http://localhost:3000 cy:headless",
-    "lint": "eslint --fix --ext .js,.ts,.tsx ./src --ignore-path .gitignore",
-    "prettier": "prettier --write \"**/*.+(js|json|ts|tsx)\"",
+    "lint": "eslint src/**/* --ext .js,.ts,.tsx ./src --config .eslintrc.js --ignore-path .eslintignore --fix --cache",
+    "prettier": "prettier \"**/*.+(js|json|ts|tsx)\" --cache",
     "format": "npm run prettier -- --write",
-    "format:check": "npm run prettier -- --list-different",
+    "format:check": "npm run prettier -- --check --list-different",
     "types:check": "tsc --project tsconfig.json --pretty --noEmit",
-    "generate": "plop",
+    "generate:package": "plop package",
+    "generate:component": "plop component",
+    "storybook:clean": "rm -rf node_modules/.cache/storybook",
     "storybook:open": "start-storybook -p 6006",
-    "storybook:build": "build-storybook"
+    "storybook:build": "build-storybook",
+    "storybook:serve": "pnpx serve storybook-static"
   },
   "keywords": [],
   "author": "",
@@ -29,13 +32,19 @@
     "@faker-js/faker": "^7.6.0",
     "@kunlunjs/fabric": "^0.6.3",
     "@mswjs/data": "^0.11.2",
+    "@storybook/addon-a11y": "^6.5.16",
     "@storybook/addon-actions": "^6.5.16",
     "@storybook/addon-essentials": "^6.5.16",
     "@storybook/addon-interactions": "^6.5.16",
     "@storybook/addon-links": "^6.5.16",
+    "@storybook/addon-storysource": "^6.5.16",
     "@storybook/builder-vite": "^0.4.2",
+    "@storybook/builder-webpack5": "^6.5.16",
+    "@storybook/cli": "^6.5.16",
+    "@storybook/manager-webpack5": "^6.5.16",
     "@storybook/react": "^6.5.16",
     "@storybook/testing-library": "^0.0.13",
+    "@storybook/theming": "^6.5.16",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/forms": "^0.5.3",
     "@tailwindcss/line-clamp": "^0.4.2",
@@ -56,6 +65,7 @@
     "@types/testing-library__jest-dom": "^5.14.5",
     "@vitejs/plugin-react": "^3.1.0",
     "@vitest/ui": "^0.28.5",
+    "autoprefixer": "^10.4.13",
     "chalk": "4.1.2",
     "cross-env": "^7.0.3",
     "cypress": "^12.5.1",
@@ -67,6 +77,7 @@
     "msw": "^1.0.1",
     "plop": "^3.1.2",
     "postcss": "^8.4.21",
+    "postcss-loader": "^7.0.2",
     "prettier": "^2.8.4",
     "rollup-plugin-node-polyfills": "^0.2.1",
     "rollup-plugin-visualizer": "^5.9.0",
@@ -77,7 +88,8 @@
     "typescript": "^4.9.5",
     "vite": "^4.1.1",
     "vite-tsconfig-paths": "^4.0.5",
-    "vitest": "^0.28.5"
+    "vitest": "^0.28.5",
+    "web-vitals": "^3.1.1"
   },
   "dependencies": {
     "@ant-design/icons": "^5.0.1",
@@ -88,7 +100,7 @@
     "@ant-design/pro-layout": "^7.7.1",
     "@ant-design/pro-list": "^2.0.47",
     "@ant-design/pro-table": "^3.2.14",
-    "@headlessui/react": "^1.7.10",
+    "@headlessui/react": "^1.7.11",
     "@heroicons/react": "^2.0.15",
     "@hookform/resolvers": "^2.9.11",
     "@loadable/component": "^5.15.3",
@@ -113,6 +125,15 @@
     "react-router-dom": "^6.8.1",
     "zod": "^3.20.6",
     "zustand": "^4.3.3"
+  },
+  "pnpm": {
+    "overrides": {
+      "react": "18.2.0",
+      "react-dom": "18.2.0"
+    }
+  },
+  "engines": {
+    "node": ">=16.x"
   },
   "msw": {
     "workerDirectory": "public"
