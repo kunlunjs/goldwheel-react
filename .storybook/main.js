@@ -8,10 +8,11 @@ function getStories({ pkg, dir = 'components' }) {
    * @type {string[]} scope
    */
   const scope = pkg ? [pkg] : fs.readdirSync(dirName)
-  return scope
+  const stories = scope
     .map(pkg => `${dirName}/${pkg}`)
     .filter(storyDir => fs.existsSync(storyDir))
-    .map(storyDir => `../${storyDir}/*.stories.tsx`)
+    .map(storyDir => `../${storyDir}/**/*.stories.tsx`)
+  return stories
 }
 
 module.exports = {
