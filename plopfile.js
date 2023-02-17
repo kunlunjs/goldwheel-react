@@ -25,9 +25,10 @@ module.exports = function main(plop) {
   plop.setHelper('capitalize', text => {
     return capitalize(camelCase(text))
   })
-
+  // npm run generate:component
   plop.setGenerator('component', componentGenerator)
 
+  // npm run generate:package
   plop.setGenerator('package', {
     description: 'Generates a component package',
     prompts: [

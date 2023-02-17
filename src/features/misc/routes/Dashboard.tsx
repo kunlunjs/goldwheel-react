@@ -1,9 +1,55 @@
 import { ContentLayout } from '@/components/Layout'
+// import { useECharts } from '@/hooks/useECharts'
 import { useUser } from '@/lib/auth'
 import { ROLES } from '@/lib/authorization'
 
 export const Dashboard = () => {
   const user = useUser()
+  // const [echartRef] = useECharts({
+  //   angleAxis: {
+  //     max: 2,
+  //     startAngle: 30,
+  //     splitLine: {
+  //       show: false
+  //     }
+  //   },
+  //   radiusAxis: {
+  //     type: 'category',
+  //     data: ['v', 'w', 'x', 'y', 'z'],
+  //     z: 10
+  //   },
+  //   polar: {},
+  //   series: [
+  //     {
+  //       type: 'bar',
+  //       data: [4, 3, 2, 1, 0],
+  //       coordinateSystem: 'polar',
+  //       name: 'Without Round Cap',
+  //       itemStyle: {
+  //         borderColor: 'red',
+  //         opacity: 0.8,
+  //         borderWidth: 1
+  //       }
+  //     },
+  //     {
+  //       type: 'bar',
+  //       data: [4, 3, 2, 1, 0],
+  //       coordinateSystem: 'polar',
+  //       name: 'With Round Cap',
+  //       roundCap: true,
+  //       itemStyle: {
+  //         borderColor: 'green',
+  //         opacity: 0.8,
+  //         borderWidth: 1
+  //       }
+  //     }
+  //   ],
+  //   legend: {
+  //     show: true,
+  //     data: ['Without Round Cap', 'With Round Cap']
+  //   }
+  // })
+
   return (
     <ContentLayout title="Dashboard">
       <h1 className="mt-2 text-xl">
@@ -28,6 +74,7 @@ export const Dashboard = () => {
           <li>Delete all comments</li>
         </ul>
       )}
+      {/* <div ref={echartRef} className="h-96 w-96" /> */}
     </ContentLayout>
   )
 }
