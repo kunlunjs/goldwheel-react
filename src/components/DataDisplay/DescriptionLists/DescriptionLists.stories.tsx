@@ -1,23 +1,16 @@
 import type { Meta, Story } from '@storybook/react'
-import { LeftAlignedDescriptionLists } from './LeftAligned'
 import { LeftAlignedInCardDescriptionLists } from './LeftAlignedInCard'
 import { LeftAlignedStripedInCardDescriptionLists } from './LeftAlignedStripedInCard'
 import { LeftAlignedWithInlineInActionsDescriptionLists } from './LeftAlignedWithInlineActions'
 import { TwoColumnInCardDescriptionLists } from './TwoColumnInCard'
 
 const meta: Meta = {
-  title: 'Components/ApplicationUI/DescriptionLists',
-  component: LeftAlignedInCardDescriptionLists,
+  title: 'Components/DatDisplay/DescriptionLists',
+  // component: LeftAlignedInCardDescriptionLists,
   parameters: {
     controls: { expanded: true }
   }
 }
-
-export default meta
-
-const LeftAlignedTemplate: Story = () => <LeftAlignedDescriptionLists />
-export const LeftAligned = LeftAlignedTemplate.bind({})
-LeftAligned.args = {}
 
 const LeftAlignedInCardTemplate: Story = props => (
   <LeftAlignedInCardDescriptionLists />
@@ -44,4 +37,6 @@ const LeftAlignedWithInlineInActionsTemplate: Story = () => (
 
 export const LeftAlignedWithInlineInActions =
   LeftAlignedWithInlineInActionsTemplate.bind({})
-LeftAlignedTemplate.args = {}
+LeftAlignedWithInlineInActions.args = {}
+
+export default meta

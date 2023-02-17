@@ -1,6 +1,6 @@
 import { rest } from 'msw'
 import { nanoid } from 'nanoid'
-import { API_URL } from '@/config'
+import { API_BASE } from '@/config'
 import { db, persistDb } from '../db'
 import { authenticate, delayedResponse, hash, requireAuth } from '../utils'
 
@@ -19,7 +19,7 @@ type LoginBody = {
 }
 
 export const authHandlers = [
-  rest.post<RegisterBody>(`${API_URL}/auth/register`, (req, res, ctx) => {
+  rest.post<RegisterBody>(`${API_BASE}/auth/register`, (req, res, ctx) => {
     try {
       const userObject = req.body
 
@@ -88,7 +88,7 @@ export const authHandlers = [
     }
   }),
 
-  rest.post<LoginBody>(`${API_URL}/auth/login`, (req, res, ctx) => {
+  rest.post<LoginBody>(`${API_BASE}/auth/login`, (req, res, ctx) => {
     try {
       const credentials = req.body
       const result = authenticate(credentials)
@@ -101,7 +101,7 @@ export const authHandlers = [
     }
   }),
 
-  rest.get(`${API_URL}/auth/me`, (req, res, ctx) => {
+  rest.get(`${API_BASE}/auth/me`, (req, res, ctx) => {
     try {
       const user = requireAuth(req)
 

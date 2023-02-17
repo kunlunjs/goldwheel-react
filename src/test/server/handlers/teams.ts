@@ -1,10 +1,10 @@
 import { rest } from 'msw'
-import { API_URL } from '@/config'
+import { API_BASE } from '@/config'
 import { db } from '../db'
 import { delayedResponse } from '../utils'
 
 export const teamsHandlers = [
-  rest.get(`${API_URL}/teams`, (req, res, ctx) => {
+  rest.get(`${API_BASE}/teams`, (req, res, ctx) => {
     try {
       const result = db.team.getAll()
       return delayedResponse(ctx.json(result))

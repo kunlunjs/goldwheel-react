@@ -14,6 +14,7 @@ import { NavLink, Link } from 'react-router-dom'
 import logo from '@/assets/logo.svg'
 import { useLogout } from '@/lib/auth'
 import { useAuthorization, ROLES } from '@/lib/authorization'
+import { Fullscreen } from '../Fullscreen'
 
 type SideNavigationItem = {
   name: string
@@ -256,6 +257,7 @@ export const MainLayout = ({ children }: MainLayoutProps) => {
             <Bars3Icon className="h-6 w-6" aria-hidden="true" />
           </button>
           <div className="flex flex-1 justify-end px-4">
+            <Fullscreen />
             <div className="ml-4 flex items-center md:ml-6">
               <UserNavigation />
             </div>

@@ -1,4 +1,4 @@
-import { ReactElement } from 'react'
+import type { ReactElement } from 'react'
 import { ArchiveBoxIcon } from '@heroicons/react/24/outline'
 
 type TableColumn<Entry> = {
