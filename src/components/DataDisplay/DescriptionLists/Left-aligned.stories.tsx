@@ -8,7 +8,7 @@ const meta: Meta = {
   }
 }
 
-const LeftAlignedTemplate: Story = () => (
+export const LeftAlignedTemplate: Story = () => (
   <div>
     <div>
       <h3 className="text-lg font-medium leading-6 text-gray-900">
@@ -109,7 +109,7 @@ const LeftAlignedTemplate: Story = () => (
   </div>
 )
 
-export const LeftAligned = LeftAlignedTemplate.bind({})
-LeftAligned.args = {}
+// export const LeftAligned = LeftAlignedTemplate.bind({})
+// LeftAligned.args = {}
 
 export default meta

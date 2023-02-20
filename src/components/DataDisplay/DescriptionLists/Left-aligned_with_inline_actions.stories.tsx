@@ -1,4 +1,14 @@
 import { PaperClipIcon } from '@heroicons/react/20/solid'
+import type { Meta } from '@storybook/react'
+
+const meta: Meta = {
+  title: 'Components/DatDisplay/DescriptionLists',
+  parameters: {
+    controls: { expanded: true }
+  }
+}
+
+export default meta
 
 export function LeftAlignedWithInlineInActionsDescriptionLists() {
   return (
