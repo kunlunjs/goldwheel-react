@@ -35,9 +35,9 @@ function render() {
 /**
  * @see https://cn.vitejs.dev/guide/env-and-mode.html
  */
-// TODO: support top level `await`
+// NOTE: {"module": "ESNext", target": "ESNext"} support top level `await`
 ;(async () => {
-  if (import.meta.env.DEV) {
+  if (import.meta.env.VITE_API_MOCKING === 'true') {
     const { initMocks } = await import('./test/server')
     initMocks().then(() => {
       render()

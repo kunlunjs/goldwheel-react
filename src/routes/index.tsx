@@ -1,14 +1,14 @@
 import { useRoutes } from 'react-router-dom'
 import { Landing } from '@/features/misc'
 import { useUser } from '@/lib/auth'
-import { lazyImport } from '@/utils/lazyImport'
+// import { lazyImport } from '@/utils/lazyImport'
 import { protectedRoutes } from './protected'
 import { publicRoutes } from './public'
 
-const { CoreLayout } = lazyImport(
-  () => import('@/components/Layout/CoreLayout'),
-  'CoreLayout'
-)
+// const { CoreLayout } = lazyImport(
+//   () => import('@/components/Layout/CoreLayout'),
+//   'CoreLayout'
+// )
 
 export const AppRoutes = () => {
   const user = useUser()
