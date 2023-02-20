@@ -3,7 +3,7 @@
 FROM harbor.pegasus.tech/pbdata/node18.14.1-alpine3.16-pnpm:7.27.1 as builder
 COPY . /
 
-RUN npx pnpm i --registry https://registry.npmmirror.com
+RUN pnpm i --registry https://registry.npmmirror.com
 RUN pnpm build
 
 FROM harbor.pegasus.tech/infra/base-os/nginx:1.21.5
