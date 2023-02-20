@@ -1,6 +1,6 @@
 import { rest } from 'msw'
 import { nanoid } from 'nanoid'
-import { API_URL } from '@/config'
+import { API_BASE } from '@/config'
 import { db, persistDb } from '../db'
 import { requireAuth, requireAdmin, delayedResponse } from '../utils'
 
@@ -10,7 +10,7 @@ type DiscussionBody = {
 }
 
 export const discussionsHandlers = [
-  rest.get(`${API_URL}/discussions`, (req, res, ctx) => {
+  rest.get(`${API_BASE}/discussions`, (req, res, ctx) => {
     try {
       const user = requireAuth(req)
       const result = db.discussion.findMany({
@@ -29,7 +29,7 @@ export const discussionsHandlers = [
     }
   }),
 
-  rest.get(`${API_URL}/discussions/:discussionId`, (req, res, ctx) => {
+  rest.get(`${API_BASE}/discussions/:discussionId`, (req, res, ctx) => {
     try {
       const user = requireAuth(req)
       const { discussionId } = req.params
@@ -52,7 +52,7 @@ export const discussionsHandlers = [
     }
   }),
 
-  rest.post<DiscussionBody>(`${API_URL}/discussions`, (req, res, ctx) => {
+  rest.post<DiscussionBody>(`${API_BASE}/discussions`, (req, res, ctx) => {
     try {
       const user = requireAuth(req)
       const data = req.body
@@ -74,7 +74,7 @@ export const discussionsHandlers = [
   }),
 
   rest.patch<DiscussionBody>(
-    `${API_URL}/discussions/:discussionId`,
+    `${API_BASE}/discussions/:discussionId`,
     (req, res, ctx) => {
       try {
         const user = requireAuth(req)
@@ -103,7 +103,7 @@ export const discussionsHandlers = [
     }
   ),
 
-  rest.delete(`${API_URL}/discussions/:discussionId`, (req, res, ctx) => {
+  rest.delete(`${API_BASE}/discussions/:discussionId`, (req, res, ctx) => {
     try {
       const user = requireAuth(req)
       const { discussionId } = req.params

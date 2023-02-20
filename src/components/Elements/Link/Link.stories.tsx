@@ -11,6 +11,7 @@ const meta: Meta = {
 
 export default meta
 
+// FIXME: Error: useHref() may be used only in the context of a <Router> component.
 const Template: Story = props => (
   <Link to="/" {...props}>
     Hello

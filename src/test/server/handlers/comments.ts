@@ -1,6 +1,6 @@
 import { rest } from 'msw'
 import { nanoid } from 'nanoid'
-import { API_URL } from '@/config'
+import { API_BASE } from '@/config'
 import { db, persistDb } from '../db'
 import { requireAuth, delayedResponse } from '../utils'
 
@@ -10,7 +10,7 @@ type CreateCommentBody = {
 }
 
 export const commentsHandlers = [
-  rest.get(`${API_URL}/comments`, (req, res, ctx) => {
+  rest.get(`${API_BASE}/comments`, (req, res, ctx) => {
     try {
       requireAuth(req)
       const discussionId = req.url.searchParams.get('discussionId') || ''
@@ -30,7 +30,7 @@ export const commentsHandlers = [
     }
   }),
 
-  rest.post<CreateCommentBody>(`${API_URL}/comments`, (req, res, ctx) => {
+  rest.post<CreateCommentBody>(`${API_BASE}/comments`, (req, res, ctx) => {
     try {
       const user = requireAuth(req)
       const data = req.body
@@ -50,7 +50,7 @@ export const commentsHandlers = [
     }
   }),
 
-  rest.delete(`${API_URL}/comments/:commentId`, (req, res, ctx) => {
+  rest.delete(`${API_BASE}/comments/:commentId`, (req, res, ctx) => {
     try {
       const user = requireAuth(req)
       const { commentId } = req.params

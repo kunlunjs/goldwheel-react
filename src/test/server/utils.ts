@@ -70,7 +70,8 @@ export function authenticate({
 
 export function requireAuth(request: RestRequest) {
   try {
-    const encodedToken = request.headers.get('authorization')
+    // Bearer {token}
+    const encodedToken = request.headers.get('Authorization')?.split(' ')[1]
     if (!encodedToken) {
       throw new Error('No authorization token provided!')
     }

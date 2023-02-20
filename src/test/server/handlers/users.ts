@@ -1,5 +1,5 @@
 import { rest } from 'msw'
-import { API_URL } from '@/config'
+import { API_BASE } from '@/config'
 import { db, persistDb } from '../db'
 import { requireAuth, requireAdmin, delayedResponse } from '../utils'
 
@@ -11,7 +11,7 @@ type ProfileBody = {
 }
 
 export const usersHandlers = [
-  rest.get(`${API_URL}/users`, (req, res, ctx) => {
+  rest.get(`${API_BASE}/users`, (req, res, ctx) => {
     try {
       const user = requireAuth(req)
       const result = db.user.findMany({
@@ -31,7 +31,7 @@ export const usersHandlers = [
     }
   }),
 
-  rest.patch<ProfileBody>(`${API_URL}/users/profile`, (req, res, ctx) => {
+  rest.patch<ProfileBody>(`${API_BASE}/users/profile`, (req, res, ctx) => {
     try {
       const user = requireAuth(req)
       const data = req.body
@@ -53,7 +53,7 @@ export const usersHandlers = [
     }
   }),
 
-  rest.delete(`${API_URL}/users/:userId`, (req, res, ctx) => {
+  rest.delete(`${API_BASE}/users/:userId`, (req, res, ctx) => {
     try {
       const user = requireAuth(req)
       const { userId } = req.params
