@@ -76,13 +76,36 @@ export default defineConfig((mode: ConfigEnv): UserConfig => {
       }
     },
     esbuild: {
-      // pure: ['console.log', 'debugger']
+      pure: mode.mode === 'production' ? ['console.log', 'debugger'] : []
     },
     build: {
       outDir: 'dist',
       minify: 'esbuild', // 'terser'
+      chunkSizeWarningLimit: 1024,
       rollupOptions: {
         output: {
+          // TODO: optimization
+          // manualChunks: {
+          //   lodash: ['lodash'],
+          //   react: [
+          //     'react',
+          //     'react-dom',
+          //     'react-router-dom',
+          //     '@tanstack/react-query',
+          //     '@tanstack/react-query-devtools',
+          //     'react-error-boundary',
+          //     'react-helmet-async',
+          //     'react-query-auth',
+          //     'react-hook-form',
+          //     'react-i18next',
+          //     'ahooks'
+          //   ]
+          // },
+          // manualChunks(id) {
+          //   if (id.includes('node_modules')) {
+          //     return 'vendor'
+          //   }
+          // },
           chunkFileNames: 'chunks/js/[name]-[hash].js',
           entryFileNames: 'assets/js/[name]-[hash].js',
           assetFileNames: 'assets/[ext]/[name]-[hash].[ext]'
