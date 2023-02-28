@@ -1,8 +1,9 @@
 import { Suspense } from 'react'
 import type { RouteObject } from 'react-router-dom'
-import { Navigate, Outlet } from 'react-router-dom'
+import { useLocation, Navigate, Outlet } from 'react-router-dom'
 import { Spinner } from '@/components/Elements'
 import { MainLayout } from '@/components/Layout'
+import { useUser } from '@/lib/auth'
 import { lazyImport } from '@/utils/lazyImport'
 
 const { Discussions } = lazyImport(
@@ -18,6 +19,13 @@ const { Profile } = lazyImport(() => import('@/features/users'), 'Profile')
 const { Users } = lazyImport(() => import('@/features/users'), 'Users')
 
 const App = () => {
+  const user = useUser()
+  const location = useLocation()
+
+  if (!user.data) {
+    return <Navigate to="/auth/login" state={{ from: location }} replace />
+  }
+
   return (
     <MainLayout>
       <Suspense
