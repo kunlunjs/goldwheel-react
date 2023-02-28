@@ -1,12 +1,17 @@
 import { Suspense } from 'react'
+import type { RouteObject } from 'react-router-dom'
 import { Navigate, Outlet } from 'react-router-dom'
 import { Spinner } from '@/components/Elements'
 import { MainLayout } from '@/components/Layout'
 import { lazyImport } from '@/utils/lazyImport'
 
-const { DiscussionsRoutes } = lazyImport(
-  () => import('@/features/discussions'),
-  'DiscussionsRoutes'
+const { Discussions } = lazyImport(
+  () => import('@/features/discussions/routes/Discussions'),
+  'Discussions'
+)
+const { Discussion } = lazyImport(
+  () => import('@/features/discussions/routes/Discussion'),
+  'Discussion'
 )
 const { Dashboard } = lazyImport(() => import('@/features/misc'), 'Dashboard')
 const { Profile } = lazyImport(() => import('@/features/users'), 'Profile')
@@ -28,7 +33,7 @@ const App = () => {
   )
 }
 
-export const protectedRoutes = [
+export const protectedRoutes: RouteObject[] = [
   {
     path: '/app',
     element: <App />,
@@ -36,7 +41,19 @@ export const protectedRoutes = [
       { index: true, element: <Dashboard /> },
       { path: '/app/users', element: <Users /> },
       { path: '/app/profile', element: <Profile /> },
-      { path: '/app/discussions/*', element: <DiscussionsRoutes /> },
+      {
+        path: '/app/discussions',
+        children: [
+          {
+            index: true,
+            element: <Discussions />
+          },
+          {
+            path: '/app/discussions/:discussionId',
+            element: <Discussion />
+          }
+        ]
+      },
       { path: '*', element: <Navigate to="." /> }
     ]
   }

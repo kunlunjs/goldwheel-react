@@ -5,22 +5,19 @@ import { useUser } from '@/lib/auth'
 import { protectedRoutes } from './protected'
 import { publicRoutes } from './public'
 
-// const { CoreLayout } = lazyImport(
-//   () => import('@/components/Layout/CoreLayout'),
-//   'CoreLayout'
-// )
-
 export const AppRoutes = () => {
   const user = useUser()
 
-  const commonRoutes = [
-    { path: '/', element: <Landing /> }
-    // { path: '/layout', element: <CoreLayout /> }
-  ]
+  const commonRoutes = [{ path: '/', element: <Landing /> }]
 
   const routes = user.data ? protectedRoutes : publicRoutes
 
-  const element = useRoutes([...routes, ...commonRoutes])
+  // const element = useRoutes([...routes, ...commonRoutes])
+  const element = useRoutes([
+    ...protectedRoutes,
+    ...publicRoutes,
+    ...commonRoutes
+  ])
 
   return <>{element}</>
 }
