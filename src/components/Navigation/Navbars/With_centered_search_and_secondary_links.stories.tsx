@@ -122,7 +122,7 @@ export function WithCenteredSearchAndSecondaryLinks() {
                               href={item.href}
                               className={clsx(
                                 active ? 'bg-gray-100' : '',
-                                'block py-2 px-4 text-sm text-gray-700'
+                                'block px-4 py-2 text-sm text-gray-700'
                               )}
                             >
                               {item.name}
@@ -147,7 +147,7 @@ export function WithCenteredSearchAndSecondaryLinks() {
                     item.current
                       ? 'bg-gray-100 text-gray-900'
                       : 'text-gray-900 hover:bg-gray-50 hover:text-gray-900',
-                    'inline-flex items-center rounded-md py-2 px-3 text-sm font-medium'
+                    'inline-flex items-center rounded-md px-3 py-2 text-sm font-medium'
                   )}
                   aria-current={item.current ? 'page' : undefined}
                 >
@@ -158,7 +158,7 @@ export function WithCenteredSearchAndSecondaryLinks() {
           </div>
 
           <Disclosure.Panel as="nav" className="lg:hidden" aria-label="Global">
-            <div className="space-y-1 px-2 pt-2 pb-3">
+            <div className="space-y-1 px-2 pb-3 pt-2">
               {navigation.map(item => (
                 <Disclosure.Button
                   key={item.name}
@@ -168,7 +168,7 @@ export function WithCenteredSearchAndSecondaryLinks() {
                     item.current
                       ? 'bg-gray-100 text-gray-900'
                       : 'text-gray-900 hover:bg-gray-50 hover:text-gray-900',
-                    'block rounded-md py-2 px-3 text-base font-medium'
+                    'block rounded-md px-3 py-2 text-base font-medium'
                   )}
                   aria-current={item.current ? 'page' : undefined}
                 >
@@ -176,7 +176,7 @@ export function WithCenteredSearchAndSecondaryLinks() {
                 </Disclosure.Button>
               ))}
             </div>
-            <div className="border-t border-gray-200 pt-4 pb-3">
+            <div className="border-t border-gray-200 pb-3 pt-4">
               <div className="flex items-center px-4">
                 <div className="flex-shrink-0">
                   <img
@@ -207,7 +207,7 @@ export function WithCenteredSearchAndSecondaryLinks() {
                     key={item.name}
                     as="a"
                     href={item.href}
-                    className="block rounded-md py-2 px-3 text-base font-medium text-gray-500 hover:bg-gray-50 hover:text-gray-900"
+                    className="block rounded-md px-3 py-2 text-base font-medium text-gray-500 hover:bg-gray-50 hover:text-gray-900"
                   >
                     {item.name}
                   </Disclosure.Button>

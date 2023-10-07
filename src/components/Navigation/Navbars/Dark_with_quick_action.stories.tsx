@@ -152,7 +152,7 @@ export function DarkWithQuickAction() {
           </div>
 
           <Disclosure.Panel className="md:hidden">
-            <div className="space-y-1 px-2 pt-2 pb-3 sm:px-3">
+            <div className="space-y-1 px-2 pb-3 pt-2 sm:px-3">
               {navigation.map(item => (
                 <Disclosure.Button
                   key={item.name}
@@ -170,7 +170,7 @@ export function DarkWithQuickAction() {
                 </Disclosure.Button>
               ))}
             </div>
-            <div className="border-t border-gray-700 pt-4 pb-3">
+            <div className="border-t border-gray-700 pb-3 pt-4">
               <div className="flex items-center px-5 sm:px-6">
                 <div className="flex-shrink-0">
                   <img

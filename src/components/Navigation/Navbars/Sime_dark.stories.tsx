@@ -156,7 +156,7 @@ export function SimeDark() {
           </div>
 
           <Disclosure.Panel className="sm:hidden">
-            <div className="space-y-1 px-2 pt-2 pb-3">
+            <div className="space-y-1 px-2 pb-3 pt-2">
               {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
               <Disclosure.Button
                 as="a"
@@ -187,7 +187,7 @@ export function SimeDark() {
                 Calendar
               </Disclosure.Button>
             </div>
-            <div className="border-t border-gray-700 pt-4 pb-3">
+            <div className="border-t border-gray-700 pb-3 pt-4">
               <div className="flex items-center px-5">
                 <div className="flex-shrink-0">
                   <img

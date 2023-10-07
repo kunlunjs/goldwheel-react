@@ -36,16 +36,14 @@ function render() {
  * @see https://cn.vitejs.dev/guide/env-and-mode.html
  */
 // NOTE: {"module": "ESNext", target": "ESNext"} support top level `await`
-;(async () => {
-  if (import.meta.env.VITE_API_MOCKING === 'true') {
-    const { initMocks } = await import('./test/server')
-    initMocks().then(() => {
-      render()
-    })
-  } else {
+if (import.meta.env.VITE_API_MOCKING === 'true') {
+  const { initMocks } = await import('./test/server')
+  initMocks().then(() => {
     render()
-  }
-})()
+  })
+} else {
+  render()
+}
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
