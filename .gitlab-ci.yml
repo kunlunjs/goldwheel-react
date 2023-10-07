@@ -1,5 +1,5 @@
 variables:
-  IMAGE_NAME: ${CI_REGISTRY}/pbdata/universe
+  IMAGE_NAME: ${CI_REGISTRY}/pbdata/goldwheel
 
 stages:
   - prep
@@ -23,7 +23,7 @@ build-prep:
   rules:
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event" || $CI_PIPELINE_SOURCE == "web" || $CI_PIPELINE_SOURCE == "tag"'
 
-universe-build:
+goldwheel-build:
   stage: build
   tags:
     - k8s-dev-shanghai
@@ -41,7 +41,7 @@ universe-build:
   dependencies:
     - build-prep
 
-universe-tag-build:
+goldwheel-tag-build:
   stage: build
   tags:
     - k8s-dev-shanghai
@@ -59,13 +59,13 @@ universe-tag-build:
   dependencies:
     - build-prep
 
-universe-dev-deploy:
+goldwheel-dev-deploy:
   image: ${CI_REGISTRY}/infra/image-updater:v0.0.3
   stage: deploy
   tags:
     - k8s-dev-shanghai
   script:
-    - /root/image-updater update --driver gitlab --api-endpoint http://gitlab.pegasus.tech --file-path k8s/universe/values.yaml --image-repo ${IMAGE_NAME} --source-repo cloud/galaxy --update-key image.tag --auth_token ${GALAXY_PUSH_TOKEN} --source-branch deploy_dev --new-image-url ${IMAGE_TAG}
+    - /root/image-updater update --driver gitlab --api-endpoint http://gitlab.pegasus.tech --file-path k8s/goldwheel/values.yaml --image-repo ${IMAGE_NAME} --source-repo cloud/galaxy --update-key image.tag --auth_token ${GALAXY_PUSH_TOKEN} --source-branch deploy_dev --new-image-url ${IMAGE_TAG}
   environment:
     name: k8s-dev-shanghai
   rules:
@@ -74,13 +74,13 @@ universe-dev-deploy:
     - build-prep
   when: manual
 
-universe-prod-deploy:
+goldwheel-prod-deploy:
   image: ${CI_REGISTRY}/infra/image-updater:v0.0.3
   stage: deploy
   tags:
     - k8s-prod
   script:
-    - /root/image-updater update --driver gitlab --api-endpoint http://gitlab.pegasus.tech --file-path k8s/universe/values-prod.yaml --image-repo ${IMAGE_NAME} --source-repo cloud/galaxy --update-key image.tag --auth_token ${GALAXY_PUSH_TOKEN} --source-branch master --branch-generate-name universe-prod-deploy- --new-image-url ${IMAGE_TAG}
+    - /root/image-updater update --driver gitlab --api-endpoint http://gitlab.pegasus.tech --file-path k8s/goldwheel/values-prod.yaml --image-repo ${IMAGE_NAME} --source-repo cloud/galaxy --update-key image.tag --auth_token ${GALAXY_PUSH_TOKEN} --source-branch master --branch-generate-name goldwheel-prod-deploy- --new-image-url ${IMAGE_TAG}
   environment:
     name: k8s-prod-shanghai
   rules:
