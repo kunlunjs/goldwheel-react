@@ -31,6 +31,8 @@ node_modules
 
 !**/*.html
 !**/*.js
+!**/*.csx
+!**/*.mjs
 !**/*.jsx
 !**/*.ts
 !**/*.tsx
@@ -39,4 +41,3 @@ node_modules
 !**/*.css
 !**/*.less
 !**/*.scss
-!README.md
