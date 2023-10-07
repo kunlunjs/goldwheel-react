@@ -73,7 +73,8 @@ test('should fail submission if validation fails', async () => {
 
   await userEvent.click(screen.getByRole('button', { name: /submit/i }))
 
-  await screen.findByRole(/alert/i, { name: /required/i })
+  // await screen.findByRole(/alert/i, { name: /required/i })
+  await screen.findByRole('alert', { name: /required/i })
 
   expect(handleSubmit).toHaveBeenCalledTimes(0)
 })

@@ -6,13 +6,13 @@ import { MainLayout } from '@/components/Layout'
 import { useUser } from '@/lib/auth'
 import { lazyImport } from '@/utils/lazyImport'
 
-const { Discussions } = lazyImport(
+const { DiscussionsPage } = lazyImport(
   () => import('@/features/discussions/routes/Discussions'),
-  'Discussions'
+  'DiscussionsPage'
 )
-const { Discussion } = lazyImport(
+const { DiscussionPage } = lazyImport(
   () => import('@/features/discussions/routes/Discussion'),
-  'Discussion'
+  'DiscussionPage'
 )
 const { Dashboard } = lazyImport(() => import('@/features/misc'), 'Dashboard')
 const { Profile } = lazyImport(() => import('@/features/users'), 'Profile')
@@ -54,11 +54,11 @@ export const protectedRoutes: RouteObject[] = [
         children: [
           {
             index: true,
-            element: <Discussions />
+            element: <DiscussionsPage />
           },
           {
             path: '/app/discussions/:discussionId',
-            element: <Discussion />
+            element: <DiscussionPage />
           }
         ]
       },

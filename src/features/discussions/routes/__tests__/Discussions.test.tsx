@@ -7,7 +7,7 @@ import {
   within
 } from '@/test/test-utils'
 import { formatDate } from '@/utils/format'
-import { Discussions } from '../Discussions'
+import { DiscussionsPage } from '../Discussions'
 
 beforeAll(() => {
   vi.spyOn(console, 'error').mockImplementation(() => {})
@@ -18,7 +18,7 @@ afterAll(() => {
 })
 
 test('should create, render and delete discussions', async () => {
-  await renderApp(<Discussions />)
+  await renderApp(<DiscussionsPage />)
 
   const newDiscussion = discussionGenerator()
 

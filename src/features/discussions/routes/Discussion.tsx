@@ -7,7 +7,7 @@ import { formatDate } from '@/utils/format'
 import { useDiscussion } from '../api/getDiscussion'
 import { UpdateDiscussion } from '../components/UpdateDiscussion'
 
-export const Discussion = () => {
+export const DiscussionPage = () => {
   const { discussionId } = useParams()
   const discussionQuery = useDiscussion({
     discussionId: discussionId as string

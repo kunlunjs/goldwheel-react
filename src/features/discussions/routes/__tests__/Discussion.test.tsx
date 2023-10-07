@@ -10,7 +10,7 @@ import {
   createUser,
   within
 } from '@/test/test-utils'
-import { Discussion } from '../Discussion'
+import { DiscussionPage } from '../Discussion'
 
 vi.mock('react-router-dom', async () => {
   return {
@@ -28,7 +28,7 @@ const renderDiscussion = async () => {
     discussionId: fakeDiscussion.id
   }))
 
-  const utils = await renderApp(<Discussion />, {
+  const utils = await renderApp(<DiscussionPage />, {
     user: fakeUser
   })
 
@@ -115,8 +115,7 @@ test('should create and delete a comment on the discussion', async () => {
   expect(commentElement).toBeInTheDocument()
 
   const deleteCommentButton = within(commentElement).getByRole('button', {
-    name: /delete comment/i,
-    exact: false
+    name: /delete comment/i
   })
 
   await userEvent.click(deleteCommentButton)
