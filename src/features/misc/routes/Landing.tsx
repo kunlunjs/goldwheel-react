@@ -52,7 +52,7 @@ export const Landing = () => {
             </div>
             <div className="ml-3 inline-flex">
               <a
-                href="http://gitlab.pegasus.tech/pbdata/goldwheel"
+                href="http://gitlab.goldwheel.tech/goldwheel/goldwheel"
                 target="_blank"
                 rel="noreferrer"
               >

@@ -1,5 +1,5 @@
 variables:
-  IMAGE_NAME: ${CI_REGISTRY}/pbdata/goldwheel
+  IMAGE_NAME: ${CI_REGISTRY}/goldwheel/goldwheel
 
 stages:
   - prep
@@ -65,7 +65,7 @@ goldwheel-dev-deploy:
   tags:
     - k8s-dev-shanghai
   script:
-    - /root/image-updater update --driver gitlab --api-endpoint http://gitlab.pegasus.tech --file-path k8s/goldwheel/values.yaml --image-repo ${IMAGE_NAME} --source-repo cloud/galaxy --update-key image.tag --auth_token ${GALAXY_PUSH_TOKEN} --source-branch deploy_dev --new-image-url ${IMAGE_TAG}
+    - /root/image-updater update --driver gitlab --api-endpoint http://gitlab.goldwheel.tech --file-path k8s/goldwheel/values.yaml --image-repo ${IMAGE_NAME} --source-repo cloud/galaxy --update-key image.tag --auth_token ${GALAXY_PUSH_TOKEN} --source-branch deploy_dev --new-image-url ${IMAGE_TAG}
   environment:
     name: k8s-dev-shanghai
   rules:
@@ -80,7 +80,7 @@ goldwheel-prod-deploy:
   tags:
     - k8s-prod
   script:
-    - /root/image-updater update --driver gitlab --api-endpoint http://gitlab.pegasus.tech --file-path k8s/goldwheel/values-prod.yaml --image-repo ${IMAGE_NAME} --source-repo cloud/galaxy --update-key image.tag --auth_token ${GALAXY_PUSH_TOKEN} --source-branch master --branch-generate-name goldwheel-prod-deploy- --new-image-url ${IMAGE_TAG}
+    - /root/image-updater update --driver gitlab --api-endpoint http://gitlab.goldwheel.tech --file-path k8s/goldwheel/values-prod.yaml --image-repo ${IMAGE_NAME} --source-repo cloud/galaxy --update-key image.tag --auth_token ${GALAXY_PUSH_TOKEN} --source-branch master --branch-generate-name goldwheel-prod-deploy- --new-image-url ${IMAGE_TAG}
   environment:
     name: k8s-prod-shanghai
   rules:

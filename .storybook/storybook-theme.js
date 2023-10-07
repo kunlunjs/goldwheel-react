@@ -2,7 +2,7 @@ import { create } from '@storybook/theming'
 
 export default create({
   base: 'light',
-  brandTitle: 'Pegasus Components',
-  brandUrl: 'https://pegasus-design.pegasus.tech'
+  brandTitle: 'Gold Wheel Components',
+  brandUrl: 'https://goldwheel.tech'
   // brandImage
 })

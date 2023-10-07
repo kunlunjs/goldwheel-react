@@ -55,9 +55,9 @@ export const CoreLayout = () => {
             // type: 'group'
           }
         }
-        title="Pegasus"
+        title="Gold Wheel"
         logo={null}
-        // logo="http://dataportal.pegasus.tech/logo.png"
+        // logo="http://goldwheel.tech/logo.png"
         avatarProps={{
           src: 'https://gw.alipayobjects.com/zos/antfincdn/efFD%24IOql2/weixintupian_20170331104822.jpg',
           size: 'small',
@@ -99,7 +99,7 @@ export const CoreLayout = () => {
           if (props?.collapsed) return undefined
           return (
             <div className="p-3 text-center">
-              <div>© 2021 Pegasus</div>
+              <div>© 2023 GoldWheel</div>
             </div>
           )
         }}
