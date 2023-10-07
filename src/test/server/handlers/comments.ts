@@ -30,25 +30,28 @@ export const commentsHandlers = [
     }
   }),
 
-  rest.post<CreateCommentBody>(`${API_BASE}/comments`, (req, res, ctx) => {
-    try {
-      const user = requireAuth(req)
-      const data = req.body
-      const result = db.comment.create({
-        author_id: user.id,
-        id: nanoid(),
-        created_at: Date.now(),
-        ...data
-      })
-      persistDb('comment')
-      return delayedResponse(ctx.json(result))
-    } catch (error: any) {
-      return delayedResponse(
-        ctx.status(400),
-        ctx.json({ message: error?.message || 'Server Error' })
-      )
+  rest.post<CreateCommentBody>(
+    `${API_BASE}/comments`,
+    async (req, res, ctx) => {
+      try {
+        const user = requireAuth(req)
+        const data = await req.json()
+        const result = db.comment.create({
+          author_id: user.id,
+          id: nanoid(),
+          created_at: Date.now(),
+          ...data
+        })
+        persistDb('comment')
+        return delayedResponse(ctx.json(result))
+      } catch (error: any) {
+        return delayedResponse(
+          ctx.status(400),
+          ctx.json({ message: error?.message || 'Server Error' })
+        )
+      }
     }
-  }),
+  ),
 
   rest.delete(`${API_BASE}/comments/:commentId`, (req, res, ctx) => {
     try {

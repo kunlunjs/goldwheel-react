@@ -52,33 +52,36 @@ export const discussionsHandlers = [
     }
   }),
 
-  rest.post<DiscussionBody>(`${API_BASE}/discussions`, (req, res, ctx) => {
-    try {
-      const user = requireAuth(req)
-      const data = req.body
-      requireAdmin(user)
-      const result = db.discussion.create({
-        team_id: user.team_id,
-        id: nanoid(),
-        created_at: Date.now(),
-        ...data
-      })
-      persistDb('discussion')
-      return delayedResponse(ctx.json(result))
-    } catch (error: any) {
-      return delayedResponse(
-        ctx.status(400),
-        ctx.json({ message: error?.message || 'Server Error' })
-      )
+  rest.post<DiscussionBody>(
+    `${API_BASE}/discussions`,
+    async (req, res, ctx) => {
+      try {
+        const user = requireAuth(req)
+        const data = await req.json()
+        requireAdmin(user)
+        const result = db.discussion.create({
+          team_id: user.team_id,
+          id: nanoid(),
+          created_at: Date.now(),
+          ...data
+        })
+        persistDb('discussion')
+        return delayedResponse(ctx.json(result))
+      } catch (error: any) {
+        return delayedResponse(
+          ctx.status(400),
+          ctx.json({ message: error?.message || 'Server Error' })
+        )
+      }
     }
-  }),
+  ),
 
   rest.patch<DiscussionBody>(
     `${API_BASE}/discussions/:discussionId`,
-    (req, res, ctx) => {
+    async (req, res, ctx) => {
       try {
         const user = requireAuth(req)
-        const data = req.body
+        const data = await req.json()
         const { discussionId } = req.params
         requireAdmin(user)
         const result = db.discussion.update({

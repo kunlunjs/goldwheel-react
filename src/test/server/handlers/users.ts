@@ -31,27 +31,30 @@ export const usersHandlers = [
     }
   }),
 
-  rest.patch<ProfileBody>(`${API_BASE}/users/profile`, (req, res, ctx) => {
-    try {
-      const user = requireAuth(req)
-      const data = req.body
-      const result = db.user.update({
-        where: {
-          id: {
-            equals: user.id
-          }
-        },
-        data
-      })
-      persistDb('user')
-      return delayedResponse(ctx.json(result))
-    } catch (error: any) {
-      return delayedResponse(
-        ctx.status(400),
-        ctx.json({ message: error?.message || 'Server Error' })
-      )
+  rest.patch<ProfileBody>(
+    `${API_BASE}/users/profile`,
+    async (req, res, ctx) => {
+      try {
+        const user = requireAuth(req)
+        const data = await req.json()
+        const result = db.user.update({
+          where: {
+            id: {
+              equals: user.id
+            }
+          },
+          data
+        })
+        persistDb('user')
+        return delayedResponse(ctx.json(result))
+      } catch (error: any) {
+        return delayedResponse(
+          ctx.status(400),
+          ctx.json({ message: error?.message || 'Server Error' })
+        )
+      }
     }
-  }),
+  ),
 
   rest.delete(`${API_BASE}/users/:userId`, (req, res, ctx) => {
     try {
