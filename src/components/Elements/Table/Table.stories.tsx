@@ -1,4 +1,4 @@
-import type { Meta, Story } from '@storybook/react'
+import type { Meta, StoryFn } from '@storybook/react'
 import type { TableProps } from './Table'
 import { Table } from './Table'
 
@@ -37,7 +37,7 @@ const data: User[] = [
   }
 ]
 
-const Template: Story<TableProps<User>> = props => <Table<User> {...props} />
+const Template: StoryFn<TableProps<User>> = props => <Table<User> {...props} />
 
 export const Default = Template.bind({})
 Default.args = {

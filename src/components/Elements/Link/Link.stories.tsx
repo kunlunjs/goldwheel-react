@@ -1,4 +1,4 @@
-import type { Meta, Story } from '@storybook/react'
+import type { Meta, StoryFn } from '@storybook/react'
 import { Link } from './Link'
 
 const meta: Meta = {
@@ -12,7 +12,7 @@ const meta: Meta = {
 export default meta
 
 // FIXME: Error: useHref() may be used only in the context of a <Router> component.
-const Template: Story = props => (
+const Template: StoryFn = props => (
   <Link to="/" {...props}>
     Hello
   </Link>

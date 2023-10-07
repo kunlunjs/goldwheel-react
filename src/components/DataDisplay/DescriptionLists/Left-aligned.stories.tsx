@@ -1,5 +1,5 @@
 import { PaperClipIcon } from '@heroicons/react/20/solid'
-import type { Meta, Story } from '@storybook/react'
+import type { Meta, StoryFn } from '@storybook/react'
 
 const meta: Meta = {
   title: 'Components/DatDisplay/DescriptionLists',
@@ -8,7 +8,7 @@ const meta: Meta = {
   }
 }
 
-export const LeftAlignedTemplate: Story = () => (
+export const LeftAlignedTemplate: StoryFn = () => (
   <div>
     <div>
       <h3 className="text-lg font-medium leading-6 text-gray-900">

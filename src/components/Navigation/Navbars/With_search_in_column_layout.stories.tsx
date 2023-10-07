@@ -3,7 +3,7 @@ import clsx from 'clsx'
 import { Menu, Popover, Transition } from '@headlessui/react'
 import { MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
-import type { Meta, Story } from '@storybook/react'
+import type { Meta, StoryFn } from '@storybook/react'
 
 const user = {
   name: 'Chelsea Hagon',
@@ -33,7 +33,7 @@ const meta: Meta = {
 /**
  * With search in column layout
  */
-export const WithSearchInColumnLayout: Story = () => {
+export const WithSearchInColumnLayout: StoryFn = () => {
   return (
     <>
       {/* When the mobile menu is open, add `overflow-hidden` to the `body` element to prevent double scrollbars */}
@@ -134,7 +134,7 @@ export const WithSearchInColumnLayout: Story = () => {
                                 href={item.href}
                                 className={clsx(
                                   active ? 'bg-gray-100' : '',
-                                  'block py-2 px-4 text-sm text-gray-700'
+                                  'block px-4 py-2 text-sm text-gray-700'
                                 )}
                               >
                                 {item.name}
@@ -157,7 +157,7 @@ export const WithSearchInColumnLayout: Story = () => {
             </div>
 
             <Popover.Panel as="nav" className="lg:hidden" aria-label="Global">
-              <div className="mx-auto max-w-3xl space-y-1 px-2 pt-2 pb-3 sm:px-4">
+              <div className="mx-auto max-w-3xl space-y-1 px-2 pb-3 pt-2 sm:px-4">
                 {navigation.map(item => (
                   <a
                     key={item.name}
@@ -167,14 +167,14 @@ export const WithSearchInColumnLayout: Story = () => {
                       item.current
                         ? 'bg-gray-100 text-gray-900'
                         : 'hover:bg-gray-50',
-                      'block rounded-md py-2 px-3 text-base font-medium'
+                      'block rounded-md px-3 py-2 text-base font-medium'
                     )}
                   >
                     {item.name}
                   </a>
                 ))}
               </div>
-              <div className="border-t border-gray-200 pt-4 pb-3">
+              <div className="border-t border-gray-200 pb-3 pt-4">
                 <div className="mx-auto flex max-w-3xl items-center px-4 sm:px-6">
                   <div className="flex-shrink-0">
                     <img
@@ -204,7 +204,7 @@ export const WithSearchInColumnLayout: Story = () => {
                     <a
                       key={item.name}
                       href={item.href}
-                      className="block rounded-md py-2 px-3 text-base font-medium text-gray-500 hover:bg-gray-50 hover:text-gray-900"
+                      className="block rounded-md px-3 py-2 text-base font-medium text-gray-500 hover:bg-gray-50 hover:text-gray-900"
                     >
                       {item.name}
                     </a>

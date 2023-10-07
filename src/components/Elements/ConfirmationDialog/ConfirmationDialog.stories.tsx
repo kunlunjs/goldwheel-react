@@ -1,4 +1,4 @@
-import type { Meta, Story } from '@storybook/react'
+import type { Meta, StoryFn } from '@storybook/react'
 import { Button } from '../Button'
 import type { ConfirmationDialogProps } from './ConfirmationDialog'
 import { ConfirmationDialog } from './ConfirmationDialog'
@@ -13,7 +13,7 @@ const meta: Meta = {
 
 export default meta
 
-const Template: Story<ConfirmationDialogProps> = props => (
+const Template: StoryFn<ConfirmationDialogProps> = props => (
   <ConfirmationDialog {...props} />
 )
 

@@ -1,4 +1,4 @@
-import type { Meta, Story } from '@storybook/react'
+import type { Meta, StoryFn } from '@storybook/react'
 import { Button } from '../Elements'
 import { Form } from './Form'
 import { FormDrawer } from './FormDrawer'
@@ -66,7 +66,7 @@ const meta: Meta = {
 
 export default meta
 
-const Template: Story = () => <MyForm />
+const Template: StoryFn = () => <MyForm />
 
 export const Default = Template.bind({})
 Default.args = {}

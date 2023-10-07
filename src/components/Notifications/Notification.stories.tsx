@@ -1,4 +1,4 @@
-import type { Meta, Story } from '@storybook/react'
+import type { Meta, StoryFn } from '@storybook/react'
 import type { NotificationProps } from './Notification'
 import { Notification } from './Notification'
 
@@ -12,7 +12,9 @@ const meta: Meta = {
 
 export default meta
 
-const Template: Story<NotificationProps> = props => <Notification {...props} />
+const Template: StoryFn<NotificationProps> = props => (
+  <Notification {...props} />
+)
 
 export const Info = Template.bind({})
 Info.args = {

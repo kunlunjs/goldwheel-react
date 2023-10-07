@@ -1,4 +1,4 @@
-import type { Meta, Story } from '@storybook/react'
+import type { Meta, StoryFn } from '@storybook/react'
 import type { ButtonProps } from './Button'
 import { Button } from './Button'
 
@@ -12,7 +12,9 @@ const meta: Meta = {
 
 export default meta
 
-const Template: Story<ButtonProps> = props => <Button {...props} />
+const Template: StoryFn<ButtonProps> = (props: ButtonProps) => (
+  <Button {...props} />
+)
 
 export const Primary = Template.bind({})
 Primary.args = {
