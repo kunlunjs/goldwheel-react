@@ -1,4 +1,5 @@
-import { Table, Spinner, Link } from '@/components/Elements'
+import { Table, Link } from '@/components/Elements'
+import { Loading } from '@/components/Loading'
 import { formatDate } from '@/utils/format'
 import { useDiscussions } from '../api/getDiscussions'
 import type { Discussion } from '../types'
@@ -11,7 +12,8 @@ export const DiscussionsList = () => {
   if (discussionsQuery.isLoading) {
     return (
       <div className="flex h-48 w-full items-center justify-center">
-        <Spinner size="lg" />
+        {/* <Spinner size="lg" /> */}
+        <Loading />
       </div>
     )
   }

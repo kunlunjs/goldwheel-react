@@ -1,5 +1,6 @@
 import { ArchiveBoxIcon } from '@heroicons/react/24/outline'
-import { Spinner, MDPreview } from '@/components/Elements'
+import { MDPreview } from '@/components/Elements'
+import { Loading } from '@/components/Loading'
 import type { User } from '@/features/users'
 import { useUser } from '@/lib/auth'
 import { POLICIES, Authorization } from '@/lib/authorization'
@@ -18,7 +19,8 @@ export const CommentsList = ({ discussionId }: CommentsListProps) => {
   if (commentsQuery.isLoading) {
     return (
       <div className="flex h-48 w-full items-center justify-center">
-        <Spinner size="lg" />
+        {/* <Spinner size="lg" /> */}
+        <Loading />
       </div>
     )
   }

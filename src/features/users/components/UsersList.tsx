@@ -1,4 +1,5 @@
-import { Table, Spinner } from '@/components/Elements'
+import { Table } from '@/components/Elements'
+import { Loading } from '@/components/Loading'
 import { formatDate } from '@/utils/format'
 import { useUsers } from '../api/getUsers'
 import type { User } from '../types'
@@ -10,7 +11,8 @@ export const UsersList = () => {
   if (usersQuery.isLoading) {
     return (
       <div className="flex h-48 w-full items-center justify-center">
-        <Spinner size="lg" />
+        {/* <Spinner size="lg" /> */}
+        <Loading />
       </div>
     )
   }

@@ -5,7 +5,8 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { ErrorBoundary } from 'react-error-boundary'
 import { HelmetProvider } from 'react-helmet-async'
 import { BrowserRouter as Router } from 'react-router-dom'
-import { Button, Spinner } from '@/components/Elements'
+import { Button } from '@/components/Elements'
+import { Loading } from '@/components/Loading'
 import { Notifications } from '@/components/Notifications/Notifications'
 import { AuthLoader } from '@/lib/auth'
 import { queryClient } from '@/lib/react-query'
@@ -36,7 +37,8 @@ export const AppProvider = ({ children }: AppProviderProps) => {
     <Suspense
       fallback={
         <div className="flex h-screen w-screen items-center justify-center">
-          <Spinner size="xl" />
+          {/* <Spinner size="xl" /> */}
+          <Loading />
         </div>
       }
     >
@@ -48,7 +50,8 @@ export const AppProvider = ({ children }: AppProviderProps) => {
             <AuthLoader
               renderLoading={() => (
                 <div className="flex h-screen w-screen items-center justify-center">
-                  <Spinner size="xl" />
+                  {/* <Spinner size="xl" /> */}
+                  <Loading />
                 </div>
               )}
             >

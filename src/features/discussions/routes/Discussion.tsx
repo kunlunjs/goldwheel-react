@@ -1,7 +1,8 @@
 import { useParams } from 'react-router-dom'
-import { Spinner, MDPreview } from '@/components/Elements'
+import { MDPreview } from '@/components/Elements'
 import { Head } from '@/components/Head'
 import { ContentLayout } from '@/components/Layout'
+import { Loading } from '@/components/Loading'
 import { Comments } from '@/features/comments'
 import { formatDate } from '@/utils/format'
 import { useDiscussion } from '../api/getDiscussion'
@@ -18,7 +19,8 @@ export const DiscussionPage = () => {
   if (discussionQuery.isLoading) {
     return (
       <div className="flex h-48 w-full items-center justify-center">
-        <Spinner size="lg" />
+        {/* <Spinner size="lg" /> */}
+        <Loading />
       </div>
     )
   }

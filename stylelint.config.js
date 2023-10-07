@@ -8,5 +8,8 @@ module.exports = {
     require.resolve('@kunlunjs/fabric/dist/stylelint')
     // or
     // require.resolve('@kunlunjs/fabric/dist/stylelint-scss')
-  ]
+  ],
+  rules: {
+    'keyframes-name-pattern': null
+  }
 }
