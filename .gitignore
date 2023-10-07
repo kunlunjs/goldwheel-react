@@ -106,3 +106,5 @@ dist
 pnpm-lock.yaml
 .history
 storybook-static
+.VSCodeCounter
+stats.html

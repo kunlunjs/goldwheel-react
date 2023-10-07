@@ -1,5 +1,6 @@
 export const initMocks = async () => {
   if (import.meta.env.VITE_API_MOCKING === 'true') {
+    console.log(typeof window == 'undefined')
     if (typeof window === 'undefined') {
       // console.log('Mocking server in server')
       const { server } = await import('./server')
