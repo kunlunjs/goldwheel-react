@@ -16,13 +16,21 @@ function getStories({ pkg, dir = 'components' }) {
   return stories
 }
 
-module.exports = {
+/**
+ * @type {import('@storybook/react').StorybookConfig}
+ */
+const config = {
   core: {
-    builder: '@storybook/builder-webpack5', // @storybook/builder-vite
     disableTelemetry: true
   },
+  // ['../src/components/DataDisplay/**/*.stories.tsx', ...]
   stories: [...getStories({ dir: 'components' })],
-  framework: '@storybook/react',
+
+  framework: {
+    name: '@storybook/react-webpack5', // '@storybook/react-vite'
+    options: {}
+  },
+
   addons: [
     '@storybook/addon-a11y',
     '@storybook/addon-links',
@@ -56,6 +64,7 @@ module.exports = {
     // }
     // 'storybook-addon-code-editor'
   ],
+
   // adapter @storybook/builder-vite
   // async viteFinal(config) {
   //   return mergeConfig(config, {
@@ -87,7 +96,14 @@ module.exports = {
     })
     return config
   },
+
   typescript: {
     reactDocgen: false
+  },
+
+  docs: {
+    autodocs: true
   }
 }
+
+export default config
