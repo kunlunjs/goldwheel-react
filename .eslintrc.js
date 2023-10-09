@@ -7,7 +7,7 @@ module.exports = {
   // NOTE: In a pure Node.js project, there is no need to configure React {settings: {react: {version: 'detect'}}
   parserOptions: {
     ecmaFeatures: {
-      jsx: false
+      jsx: true
     }
   }
 }
