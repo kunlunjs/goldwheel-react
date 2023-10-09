@@ -1,4 +1,6 @@
-# Gold Wheel
+# Gold Wheel React
+
+Showcasing Best Practices For Building React Applications
 
 ## NOTE
 
@@ -24,4 +26,5 @@ function Example() {
 ```
 
 ## TODO
-[ ] fix: `pnpm e2e` and `e2e:headless`
+- [ ] fix: `pnpm e2e` and `e2e:headless`
+- [ ] vitest intersection observer polyfill

@@ -29,6 +29,7 @@ beforeAll(() => {
     }
   }
 })
+// TODO
 // beforeEach(() => {
 //   setupIntersectionMocking(vi.fn())
 // })
