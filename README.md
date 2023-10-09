@@ -24,3 +24,4 @@ function Example() {
 ```
 
 ## TODO
+[ ] fix: `pnpm e2e` and `e2e:headless`

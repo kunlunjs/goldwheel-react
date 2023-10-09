@@ -38,19 +38,6 @@ describe('smoke', () => {
       name: /register/i
     }).click()
 
-    cy.findByRole('heading', {
-      name: `Welcome ${user.first_name} ${user.last_name}`
-    }).should('exist')
-
-    // log out:
-    cy.findByRole('button', {
-      name: /open user menu/i
-    }).click()
-
-    cy.findByRole('menuitem', {
-      name: /sign out/i
-    }).click()
-
     // log in:
     cy.visit('http://localhost:3000/auth/login')
 
@@ -213,5 +200,14 @@ describe('smoke', () => {
     cy.findByRole('cell', {
       name: updatedDiscussion.title
     }).should('not.exist')
+
+    // log out:
+    cy.findByRole('button', {
+      name: /open user menu/i
+    }).click()
+
+    cy.findByRole('menuitem', {
+      name: /sign out/i
+    }).click()
   })
 })

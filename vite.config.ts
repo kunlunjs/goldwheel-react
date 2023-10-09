@@ -72,15 +72,15 @@ export default defineConfig((mode: ConfigEnv): UserConfig => {
         ? 3000
         : parseInt(env.VITE_PORT),
       open: true,
-      cors: true,
-      proxy: {
-        '/api': {
-          target:
-            env.VITE_API_MOCKING === 'true' ? undefined : env.VITE_API_MOCKING,
-          changeOrigin: true
-          // rewrite: path => path.replace(/^\/api/, '')
-        }
-      }
+      cors: true
+      // proxy: {
+      //   '/api': {
+      //     target:
+      //       env.VITE_API_MOCKING === 'true' ? undefined : env.VITE_API_MOCKING,
+      //     changeOrigin: true
+      //     // rewrite: path => path.replace(/^\/api/, '')
+      //   }
+      // }
     },
     esbuild: {
       pure: mode.mode === 'production' ? ['console.log', 'debugger'] : []

@@ -4,17 +4,40 @@
 // learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom'
 // import '@testing-library/jest-dom/extend-expect'
+// import {
+//   setupIntersectionMocking,
+//   resetIntersectionMocking
+// } from 'react-intersection-observer/test-utils'
 import { queryClient } from '@/lib/react-query'
 import { resetDb } from '@/test/server/db'
 import { server } from '@/test/server/server'
 
-beforeAll(() =>
+beforeAll(() => {
   server.listen({
     onUnhandledRequest: 'error'
   })
-)
+  // NOTE: fix Error: Uncaught [ReferenceError: ResizeObserver is not defined]
+  global.ResizeObserver = class ResizeObserver {
+    observe() {
+      // do nothing
+    }
+    unobserve() {
+      // do nothing
+    }
+    disconnect() {
+      // do nothing
+    }
+  }
+})
+// beforeEach(() => {
+//   setupIntersectionMocking(vi.fn())
+// })
+
 afterAll(() => server.close())
-afterEach(() => server.resetHandlers())
+afterEach(() => {
+  // resetIntersectionMocking()
+  server.resetHandlers()
+})
 
 // general cleanup
 afterEach(async () => {

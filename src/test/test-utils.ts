@@ -63,7 +63,7 @@ export const renderApp = async (
     }),
     user
   }
-
+  // NOTE: only for <Spinner size="lg" />
   await waitForLoadingToFinish()
 
   return returnValue

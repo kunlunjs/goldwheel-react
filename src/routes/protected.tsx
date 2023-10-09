@@ -1,8 +1,9 @@
 import { Suspense } from 'react'
 import type { RouteObject } from 'react-router-dom'
 import { useLocation, Navigate, Outlet } from 'react-router-dom'
+import { Spinner } from '@/components/Elements'
 import { MainLayout } from '@/components/Layout'
-import { Loading } from '@/components/Loading'
+// import { Loading } from '@/components/Loading'
 import { useUser } from '@/lib/auth'
 import { lazyImport } from '@/utils/lazyImport'
 
@@ -31,8 +32,8 @@ const App = () => {
       <Suspense
         fallback={
           <div className="flex h-full w-full items-center justify-center">
-            {/* <Spinner size="lg" /> */}
-            <Loading />
+            <Spinner size="lg" />
+            {/* <Loading /> */}
           </div>
         }
       >
