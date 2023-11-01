@@ -1,8 +1,8 @@
-import { rest } from 'msw'
+import { HttpResponse, delay, http } from 'msw'
 import { nanoid } from 'nanoid'
 import { API_BASE } from '@/config'
 import { db, persistDb } from '../db'
-import { authenticate, delayedResponse, hash, requireAuth } from '../utils'
+import { authenticate, hash, requireAuth } from '../utils'
 
 type RegisterBody = {
   first_name: string
@@ -19,11 +19,11 @@ type LoginBody = {
 }
 
 export const authHandlers = [
-  rest.post<RegisterBody>(
+  http.post<any, RegisterBody>(
     `${API_BASE}/auth/register`,
-    async (req, res, ctx) => {
+    async ({ request }) => {
       try {
-        const userObject = await req.json()
+        const userObject = await request.json()
 
         const existingUser = db.user.findFirst({
           where: {
@@ -81,38 +81,50 @@ export const authHandlers = [
           password: userObject.password
         })
 
-        return delayedResponse(ctx.json(result))
+        await delay(1000)
+        return HttpResponse.json(result)
       } catch (error: any) {
-        return delayedResponse(
-          ctx.status(400),
-          ctx.json({ message: error?.message || 'Server Error' })
+        await delay(400)
+        return new Response(
+          JSON.stringify({ message: error?.message || 'Server Error' }),
+          {
+            status: 400
+          }
         )
       }
     }
   ),
 
-  rest.post<LoginBody>(`${API_BASE}/auth/login`, async (req, res, ctx) => {
+  http.post<any, LoginBody>(`${API_BASE}/auth/login`, async ({ request }) => {
     try {
-      const credentials = await req.json()
+      const credentials = await request.json()
       const result = authenticate(credentials)
-      return delayedResponse(ctx.json(result))
+      await delay(1000)
+      return HttpResponse.json(result)
     } catch (error: any) {
-      return delayedResponse(
-        ctx.status(400),
-        ctx.json({ message: error?.message || 'Server Error' })
+      await delay(400)
+      return new Response(
+        JSON.stringify({ message: error?.message || 'Server Error' }),
+        {
+          status: 400
+        }
       )
     }
   }),
 
-  rest.get(`${API_BASE}/auth/me`, (req, res, ctx) => {
+  http.get(`${API_BASE}/auth/me`, async ({ request }) => {
     try {
-      const user = requireAuth(req)
+      const user = requireAuth(request)
 
-      return delayedResponse(ctx.json(user))
+      await delay(1000)
+      return HttpResponse.json(user)
     } catch (error: any) {
-      return delayedResponse(
-        ctx.status(400),
-        ctx.json({ message: error?.message || 'Server Error' })
+      await delay(400)
+      return new Response(
+        JSON.stringify({ message: error?.message || 'Server Error' }),
+        {
+          status: 400
+        }
       )
     }
   })

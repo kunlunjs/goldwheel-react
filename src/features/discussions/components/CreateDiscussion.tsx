@@ -29,7 +29,7 @@ export const CreateDiscussion = () => {
             form="create-discussion"
             type="submit"
             size="sm"
-            isLoading={createDiscussionMutation.isLoading}
+            isLoading={createDiscussionMutation.isPending}
           >
             Submit
           </Button>

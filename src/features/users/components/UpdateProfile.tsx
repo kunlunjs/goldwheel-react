@@ -31,7 +31,7 @@ export const UpdateProfile = () => {
           form="update-profile"
           type="submit"
           size="sm"
-          isLoading={updateProfileMutation.isLoading}
+          isLoading={updateProfileMutation.isPending}
         >
           Submit
         </Button>

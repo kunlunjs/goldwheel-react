@@ -1,8 +1,8 @@
-import { rest } from 'msw'
+import { HttpResponse, delay, http } from 'msw'
 import { nanoid } from 'nanoid'
 import { API_BASE } from '@/config'
 import { db, persistDb } from '../db'
-import { requireAuth, requireAdmin, delayedResponse } from '../utils'
+import { requireAuth, requireAdmin } from '../utils'
 
 type DiscussionBody = {
   title: string
@@ -10,9 +10,9 @@ type DiscussionBody = {
 }
 
 export const discussionsHandlers = [
-  rest.get(`${API_BASE}/discussions`, (req, res, ctx) => {
+  http.get(`${API_BASE}/discussions`, async ({ request }) => {
     try {
-      const user = requireAuth(req)
+      const user = requireAuth(request)
       const result = db.discussion.findMany({
         where: {
           team_id: {
@@ -20,44 +20,55 @@ export const discussionsHandlers = [
           }
         }
       })
-      return delayedResponse(ctx.json(result))
+      await delay(1000)
+      return HttpResponse.json(result)
     } catch (error: any) {
-      return delayedResponse(
-        ctx.status(400),
-        ctx.json({ message: error?.message || 'Server Error' })
-      )
-    }
-  }),
-
-  rest.get(`${API_BASE}/discussions/:discussionId`, (req, res, ctx) => {
-    try {
-      const user = requireAuth(req)
-      const { discussionId } = req.params
-      const result = db.discussion.findFirst({
-        where: {
-          id: {
-            equals: discussionId as string
-          },
-          team_id: {
-            equals: user.team_id
-          }
+      await delay(400)
+      return new Response(
+        JSON.stringify({ message: error?.message || 'Server Error' }),
+        {
+          status: 400
         }
-      })
-      return delayedResponse(ctx.json(result))
-    } catch (error: any) {
-      return delayedResponse(
-        ctx.status(400),
-        ctx.json({ message: error?.message || 'Server Error' })
       )
     }
   }),
 
-  rest.post<DiscussionBody>(
-    `${API_BASE}/discussions`,
-    async (req, res, ctx) => {
+  http.get(
+    `${API_BASE}/discussions/:discussionId`,
+    async ({ request, params }) => {
       try {
-        const user = requireAuth(req)
-        const data = await req.json()
+        const user = requireAuth(request)
+        const { discussionId } = params
+        const result = db.discussion.findFirst({
+          where: {
+            id: {
+              equals: discussionId as string
+            },
+            team_id: {
+              equals: user.team_id
+            }
+          }
+        })
+        await delay(1000)
+        return HttpResponse.json(result)
+      } catch (error: any) {
+        await delay(400)
+        return new Response(
+          JSON.stringify({ message: error?.message || 'Server Error' }),
+          {
+            status: 400
+          }
+        )
+      }
+    }
+  ),
+
+  http.post<any, DiscussionBody>(
+    `${API_BASE}/discussions`,
+    async ({ request }) => {
+      try {
+        const user = requireAuth(request)
+        const data = await request.json()
         requireAdmin(user)
         const result = db.discussion.create({
           team_id: user.team_id,
@@ -66,23 +77,27 @@ export const discussionsHandlers = [
           ...data
         })
         persistDb('discussion')
-        return delayedResponse(ctx.json(result))
+        await delay(1000)
+        return HttpResponse.json(result)
       } catch (error: any) {
-        return delayedResponse(
-          ctx.status(400),
-          ctx.json({ message: error?.message || 'Server Error' })
+        await delay(400)
+        return new Response(
+          JSON.stringify({ message: error?.message || 'Server Error' }),
+          {
+            status: 400
+          }
         )
       }
     }
   ),
 
-  rest.patch<DiscussionBody>(
+  http.patch<{ discussionId: string }, DiscussionBody>(
     `${API_BASE}/discussions/:discussionId`,
-    async (req, res, ctx) => {
+    async ({ request, params }) => {
       try {
-        const user = requireAuth(req)
-        const data = await req.json()
-        const { discussionId } = req.params
+        const user = requireAuth(request)
+        const data = await request.json()
+        const { discussionId } = params
         requireAdmin(user)
         const result = db.discussion.update({
           where: {
@@ -96,35 +111,46 @@ export const discussionsHandlers = [
           data
         })
         persistDb('discussion')
-        return delayedResponse(ctx.json(result))
+        await delay(1000)
+        return HttpResponse.json(result)
       } catch (error: any) {
-        return delayedResponse(
-          ctx.status(400),
-          ctx.json({ message: error?.message || 'Server Error' })
+        await delay(400)
+        return new Response(
+          JSON.stringify({ message: error?.message || 'Server Error' }),
+          {
+            status: 400
+          }
         )
       }
     }
   ),
 
-  rest.delete(`${API_BASE}/discussions/:discussionId`, (req, res, ctx) => {
-    try {
-      const user = requireAuth(req)
-      const { discussionId } = req.params
-      requireAdmin(user)
-      const result = db.discussion.delete({
-        where: {
-          id: {
-            equals: discussionId as string
+  http.delete(
+    `${API_BASE}/discussions/:discussionId`,
+    async ({ request, params }) => {
+      try {
+        const user = requireAuth(request)
+        const { discussionId } = params
+        requireAdmin(user)
+        const result = db.discussion.delete({
+          where: {
+            id: {
+              equals: discussionId as string
+            }
           }
-        }
-      })
-      persistDb('discussion')
-      return delayedResponse(ctx.json(result))
-    } catch (error: any) {
-      return delayedResponse(
-        ctx.status(400),
-        ctx.json({ message: error?.message || 'Server Error' })
-      )
+        })
+        persistDb('discussion')
+        await delay(1000)
+        return HttpResponse.json(result)
+      } catch (error: any) {
+        await delay(400)
+        return new Response(
+          JSON.stringify({ message: error?.message || 'Server Error' }),
+          {
+            status: 400
+          }
+        )
+      }
     }
-  })
+  )
 ]

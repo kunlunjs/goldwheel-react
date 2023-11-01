@@ -1,11 +1,12 @@
 export const initMocks = async () => {
   if (import.meta.env.VITE_API_MOCKING === 'true') {
     if (typeof window === 'undefined') {
+      // FIXME: pnpm build https://github.com/mswjs/msw/issues/1800
       // console.log('Mocking server in server')
-      const { server } = await import('./server')
-      server.listen()
+      // const { server } = await import('./server')
+      // server.listen()
     } else {
-      // console.log('Mocking server in client')
+      console.log('Mocking server in browser')
       const { worker } = await import('./browser')
       worker.start({
         onUnhandledRequest: ({ headers, method, url }, print) => {

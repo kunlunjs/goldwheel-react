@@ -33,7 +33,7 @@ export const useUpdateDiscussion = ({
   return useMutation({
     ...config,
     onSuccess: data => {
-      queryClient.refetchQueries(['discussion', data.id])
+      queryClient.refetchQueries({ queryKey: ['discussion', data.id] })
       addNotification({
         type: 'success',
         title: 'Discussion Updated'

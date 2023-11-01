@@ -46,7 +46,7 @@ export const LoginForm = ({ onSuccess }: LoginFormProps) => {
             />
             <div>
               <Button
-                isLoading={login.isLoading}
+                isLoading={login.isPending}
                 type="submit"
                 className="w-full"
               >

@@ -1,5 +1,4 @@
-import type { RestRequest } from 'msw'
-import { createResponseComposition, context } from 'msw'
+import type { DefaultBodyType, StrictRequest } from 'msw'
 import { db } from './db'
 
 const isTesting =
@@ -14,10 +13,6 @@ export const decode = (str: string) => {
   const decode_token = JSON.parse(decodeURIComponent(window.atob(str)))
   return decode_token
 }
-
-export const delayedResponse = createResponseComposition(undefined, [
-  context.delay(isTesting ? 0 : 1000)
-])
 
 export const hash = (str: string) => {
   let hash = 5381,
@@ -68,7 +63,7 @@ export function authenticate({
   throw error
 }
 
-export function requireAuth(request: RestRequest) {
+export function requireAuth(request: StrictRequest<DefaultBodyType>) {
   try {
     // Bearer {token}
     const encodedToken = request.headers.get('Authorization')?.split(' ')[1]

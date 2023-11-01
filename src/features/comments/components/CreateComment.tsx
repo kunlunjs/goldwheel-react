@@ -26,11 +26,11 @@ export const CreateComment = ({ discussionId }: CreateCommentProps) => {
       title="Create Comment"
       submitButton={
         <Button
-          isLoading={createCommentMutation.isLoading}
+          isLoading={createCommentMutation.isPending}
           form="create-comment"
           type="submit"
           size="sm"
-          disabled={createCommentMutation.isLoading}
+          disabled={createCommentMutation.isPending}
         >
           Submit
         </Button>

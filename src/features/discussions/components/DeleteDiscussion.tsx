@@ -26,7 +26,7 @@ export const DeleteDiscussion = ({ id }: DeleteDiscussionProps) => {
         }
         confirmButton={
           <Button
-            isLoading={deleteDiscussionMutation.isLoading}
+            isLoading={deleteDiscussionMutation.isPending}
             type="button"
             className="bg-red-600"
             onClick={async () =>

@@ -1,4 +1,3 @@
-import { configureAuth } from 'react-query-auth'
 import type {
   UserResponse,
   LoginCredentialsDTO,
@@ -9,6 +8,7 @@ import {
   getUser,
   registerWithEmailAndPassword
 } from '@/features/auth'
+import { configureAuth } from '@/lib/react-query-auth/src/index'
 import storage from '@/utils/storage'
 
 async function handleUserResponse(data: UserResponse) {

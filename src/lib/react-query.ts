@@ -10,7 +10,7 @@ import type { AsyncReturnType } from 'type-fest'
 const queryConfig: DefaultOptions = {
   queries: {
     retry: false,
-    useErrorBoundary: true,
+    throwOnError: true,
     refetchOnWindowFocus: false
   }
 }

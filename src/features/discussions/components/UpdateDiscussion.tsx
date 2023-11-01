@@ -35,7 +35,7 @@ export const UpdateDiscussion = ({ discussionId }: UpdateDiscussionProps) => {
             form="update-discussion"
             type="submit"
             size="sm"
-            isLoading={updateDiscussionMutation.isLoading}
+            isLoading={updateDiscussionMutation.isPending}
           >
             Submit
           </Button>

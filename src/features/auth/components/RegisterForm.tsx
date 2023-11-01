@@ -123,7 +123,7 @@ export const RegisterForm = ({ onSuccess }: RegisterFormProps) => {
             )}
             <div>
               <Button
-                isLoading={registerMutation.isLoading}
+                isLoading={registerMutation.isPending}
                 type="submit"
                 className="w-full"
               >

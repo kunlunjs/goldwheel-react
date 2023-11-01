@@ -21,7 +21,7 @@ export const useDeleteComment = ({
   return useMutation({
     ...config,
     onSuccess: () => {
-      queryClient.invalidateQueries(['comments', discussionId])
+      queryClient.invalidateQueries({ queryKey: ['comments', discussionId] })
       addNotification({
         type: 'success',
         title: 'Comment Deleted'

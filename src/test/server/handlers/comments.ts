@@ -1,8 +1,8 @@
-import { rest } from 'msw'
+import { HttpResponse, delay, http } from 'msw'
 import { nanoid } from 'nanoid'
 import { API_BASE } from '@/config'
 import { db, persistDb } from '../db'
-import { requireAuth, delayedResponse } from '../utils'
+import { requireAuth } from '../utils'
 
 type CreateCommentBody = {
   body: string
@@ -10,10 +10,11 @@ type CreateCommentBody = {
 }
 
 export const commentsHandlers = [
-  rest.get(`${API_BASE}/comments`, (req, res, ctx) => {
+  http.get(`${API_BASE}/comments`, async ({ request }) => {
     try {
-      requireAuth(req)
-      const discussionId = req.url.searchParams.get('discussionId') || ''
+      requireAuth(request)
+      const url = new URL(request.url)
+      const discussionId = url.searchParams.get('discussionId') || ''
       const result = db.comment.findMany({
         where: {
           discussion_id: {
@@ -21,21 +22,25 @@ export const commentsHandlers = [
           }
         }
       })
-      return delayedResponse(ctx.json(result))
+      await delay(1000)
+      return HttpResponse.json(result)
     } catch (error: any) {
-      return delayedResponse(
-        ctx.status(400),
-        ctx.json({ message: error?.message || 'Server Error' })
+      await delay(400)
+      return new Response(
+        JSON.stringify({ message: error?.message || 'Server Error' }),
+        {
+          status: 400
+        }
       )
     }
   }),
 
-  rest.post<CreateCommentBody>(
+  http.post<any, CreateCommentBody>(
     `${API_BASE}/comments`,
-    async (req, res, ctx) => {
+    async ({ request }) => {
       try {
-        const user = requireAuth(req)
-        const data = await req.json()
+        const user = requireAuth(request)
+        const data = await request.json()
         const result = db.comment.create({
           author_id: user.id,
           id: nanoid(),
@@ -43,39 +48,50 @@ export const commentsHandlers = [
           ...data
         })
         persistDb('comment')
-        return delayedResponse(ctx.json(result))
+        await delay(1000)
+        return HttpResponse.json(result)
       } catch (error: any) {
-        return delayedResponse(
-          ctx.status(400),
-          ctx.json({ message: error?.message || 'Server Error' })
+        await delay(400)
+        return new Response(
+          JSON.stringify({ message: error?.message || 'Server Error' }),
+          {
+            status: 400
+          }
         )
       }
     }
   ),
 
-  rest.delete(`${API_BASE}/comments/:commentId`, (req, res, ctx) => {
-    try {
-      const user = requireAuth(req)
-      const { commentId } = req.params
-      const result = db.comment.delete({
-        where: {
-          id: {
-            equals: commentId as string
-          },
-          ...(user.role === 'USER' && {
-            author_id: {
-              equals: user.id
-            }
-          })
-        }
-      })
-      persistDb('comment')
-      return delayedResponse(ctx.json(result))
-    } catch (error: any) {
-      return delayedResponse(
-        ctx.status(400),
-        ctx.json({ message: error?.message || 'Server Error' })
-      )
+  http.delete(
+    `${API_BASE}/comments/:commentId`,
+    async ({ request, params }) => {
+      try {
+        const user = requireAuth(request)
+        const { commentId } = params
+        const result = db.comment.delete({
+          where: {
+            id: {
+              equals: commentId as string
+            },
+            ...(user.role === 'USER' && {
+              author_id: {
+                equals: user.id
+              }
+            })
+          }
+        })
+        persistDb('comment')
+        await delay(1000)
+        return HttpResponse.json(result)
+      } catch (error: any) {
+        await delay(400)
+        return new Response(
+          JSON.stringify({ message: error?.message || 'Server Error' }),
+          {
+            status: 400
+          }
+        )
+      }
     }
-  })
+  )
 ]

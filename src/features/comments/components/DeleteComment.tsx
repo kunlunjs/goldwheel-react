@@ -27,7 +27,7 @@ export const DeleteComment = ({ id, discussionId }: DeleteCommentProps) => {
       }
       confirmButton={
         <Button
-          isLoading={deleteCommentMutation.isLoading}
+          isLoading={deleteCommentMutation.isPending}
           type="button"
           className="bg-red-600"
           onClick={async () =>
